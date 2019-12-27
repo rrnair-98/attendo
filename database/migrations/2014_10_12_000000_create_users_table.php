@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('role');//teacher or student
-            $table->integer('department');// for now comps, also holds the semester in the lsbs
+            $table->integer('role');//teacher, student or HOD
+            $table->integer('department_id');// for now comps, also holds the semester in the lsbs
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');

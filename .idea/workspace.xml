@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="" />
+    <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/GraphQL/Resolvers/Queries/LectureQueryResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/GraphQL/Resolvers/Queries/LectureQueryResolver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/LectureTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/LectureTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/lecture.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/lecture.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/schema.graphql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +22,16 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="GraphQL File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -108,18 +128,27 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1VXGufE3Gn4lWwr4j52N4Cy70B1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/GraphQL/Exceptions" />
+    <property name="settings.editor.selected.configurable" value="Laravel.SettingsForm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/GraphQL/Exceptions" />
+      <recent name="$PROJECT_DIR$/app/Services" />
+      <recent name="$PROJECT_DIR$/app/Http/Middleware" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -152,33 +181,49 @@
       <option name="presentableId" value="Default" />
       <updated>1577388438233</updated>
       <workItem from="1577388442922" duration="3791000" />
-      <workItem from="1577392252251" duration="3868000" />
+      <workItem from="1577392252251" duration="10200000" />
+      <workItem from="1577449758195" duration="6716000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="2641" y="324" width="467" height="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577433350764">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2641" y="324" width="467" height="387" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577433350764" />
-    <state x="2632" y="123" width="476" height="789" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577390307211">
+    <state x="2632" y="123" width="476" height="789" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577457338726">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2632" y="123" width="476" height="789" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577390307211" />
+    <state x="2632" y="123" width="476" height="789" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577457338726" />
+    <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577475263751">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577475263751" />
     <state x="2663" y="277" width="424" height="482" key="FileChooserDialogImpl" timestamp="1577389106729">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="277" width="424" height="482" key="FileChooserDialogImpl/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577389106729" />
-    <state x="2573" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1577388443212">
+    <state x="2596" y="335" width="641" height="366" key="NewPhpClassDialog" timestamp="1577457329215">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2573" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577388443212" />
-    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1577390506827">
+    <state x="2596" y="335" width="641" height="366" key="NewPhpClassDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577457329215" />
+    <state x="2384" y="154" key="SettingsEditor" timestamp="1577449860188">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577390506827" />
+    <state x="2384" y="154" key="SettingsEditor/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577449860188" />
+    <state x="2573" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1577449756836">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2573" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577449756836" />
+    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1577478688805">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577478688805" />
   </component>
 </project>
