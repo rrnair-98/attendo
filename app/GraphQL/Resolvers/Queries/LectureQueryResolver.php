@@ -27,7 +27,7 @@ class LectureQueryResolver
      * @throws CustomException
      */
     public function findAllByDepartmenId($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo){
-
+        error_log(json_encode($args['departmentId']));
         $lectures = $this->lectureService->findAllByDepartment($args['departmentId']);
         if($lectures)
             return $lectures;
@@ -44,7 +44,7 @@ class LectureQueryResolver
      * @throws CustomException
      */
     public function findAllByDepartmendIdAndTeacherId($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo){
-        $lectures = $this->lectureService->findByTeacherAndDepartment($args['teacherId'], $args['departmendId']);
+        $lectures = $this->lectureService->findByTeacherAndDepartment($args['teacherId'], $args['departmentId']);
         if($lectures)
             return $lectures;
         throw new CustomException("Not Found", sprintf(CustomException::$RESOURCE_ERROR, "Lecture", "dept id ", "not found"));

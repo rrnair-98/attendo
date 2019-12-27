@@ -24,15 +24,16 @@ input LectureUpdationInput{
     lecture_number: Int!
 }
 
-extend type Mutation {
-    createLectures(input: [LectureCreationInput!]): GenericMessage @field(resolver)
-}
 
 extend type Query {
-    lecture(id: ID! @eq): Lecture @find
-    lectures(departmendId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmenId")
-    lectures(departmendId: ID!, teacherId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmendIdAndTeacherId")
-    lectures(teacherId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByTeacherId")
-    lectures(departmendId: ID!, dayOfWeek: Int!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmentAndDayOfWeek")
+    lecture(id: ID @eq): Lecture @find
+    depLectures(departmentId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmenId")
+    depTeacherLectures(departmentId: ID!, teacherId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmendIdAndTeacherId")
+    teacherLectures(teacherId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByTeacherId")
+    dayOfWeekDepLectures(departmentId: ID!, dayOfWeek: Int!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmentAndDayOfWeek")
+}
+
+type Mutation {
+    createLectures(input: [LectureCreationInput!]): GenericMessage @field(resolver: "App\\GraphQL\\Resolvers\\Mutations\\LectureMutationResolver@bulkCreate")
 }
 
