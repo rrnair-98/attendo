@@ -15,10 +15,12 @@ class CreateLecturesTable extends Migration
     {
         Schema::create('lectures', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('teacher_id')->index();// id of the teacher thats taking this lecture
             $table->integer('day_of_week');// The day of week of this lecture ranging from 1-6
             $table->integer('department_id');// a department Id used from a set of constants whose lsbs contain the semseter this is being used for
             $table->integer('lecture_number');//a number from 1-9 to decide order
             $table->string('subject_name');
+            $table->bigInteger('created_by');
             $table->timestamps();
         });
     }

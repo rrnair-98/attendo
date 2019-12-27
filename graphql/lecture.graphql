@@ -1,0 +1,38 @@
+
+type Lecture{
+    id: ID!
+    teacher: User!
+    day_of_week: Int!
+    department_id: Int!
+    lecture_number: Int!
+    subject_name: String!
+}
+
+
+input LectureCreationInput{
+    teacher_id: ID!
+    day_of_week: Int!
+    department_id: ID!
+    lecture_number: Int!
+    subject_name: String!
+}
+
+input LectureUpdationInput{
+    id: ID!
+    teacher_id: ID!
+    subject_name: String!
+    lecture_number: Int!
+}
+
+extend type Mutation {
+    createLectures(input: [LectureCreationInput!]): GenericMessage @field(resolver)
+}
+
+extend type Query {
+    lecture(id: ID! @eq): Lecture @find
+    lectures(departmendId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmenId")
+    lectures(departmendId: ID!, teacherId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmendIdAndTeacherId")
+    lectures(teacherId: ID!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByTeacherId")
+    lectures(departmendId: ID!, dayOfWeek: Int!): [Lecture!] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\LectureQueryResolver@findAllByDepartmentAndDayOfWeek")
+}
+
