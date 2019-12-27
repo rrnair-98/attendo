@@ -110,5 +110,34 @@ mutation{
 }
 ```
 
+AttendanceTokens
+Mutation
+create attendance token
+```$xslt
+mutation{
+ createAttendanceToken{
+    id
+    student{
+        id
+        name
+    }
+    token
+    created_at
+    }
+}
+```
 
+Query
+Attendance Token info
+```
+query{
+  attendanceTokenInfo(token: "dc49becdc371ad08f85ff1ffb4f29eeb7e651167bf23482e71b425d3e3bbf739"){
+    id
+    student{
+      name
+    }
+    token
+    created_at
+  }
+}```
 

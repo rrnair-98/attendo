@@ -15,7 +15,7 @@ class CreateAttendanceTokensTable extends Migration
     {
         Schema::create('attendance_tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('student_id');
+            $table->bigInteger('student_id')->index();
             $table->string('token')->unique();
             $table->softDeletes();
             $table->timestamps();
