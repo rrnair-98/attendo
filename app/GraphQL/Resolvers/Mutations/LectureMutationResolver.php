@@ -17,7 +17,7 @@ class LectureMutationResolver
     }
 
     public function bulkCreate($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo){
-        $this->lectureService->bulkInsert($context->request()->user->id);
+        $this->lectureService->bulkInsert($context->request()->user->id, $args['input']);
         return ['message'=>'insertion complete'];
     }
 

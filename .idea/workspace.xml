@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/GraphQL/Resolvers/Queries/LectureQueryResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/GraphQL/Resolvers/Queries/LectureQueryResolver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/LectureTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/LectureTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/lecture.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/lecture.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/GraphQL/Resolvers/Mutations/LectureMutationResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/GraphQL/Resolvers/Mutations/LectureMutationResolver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/ServiceBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ServiceBase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +176,7 @@
       <updated>1577388438233</updated>
       <workItem from="1577388442922" duration="3791000" />
       <workItem from="1577392252251" duration="10200000" />
-      <workItem from="1577449758195" duration="6716000" />
+      <workItem from="1577449758195" duration="7419000" />
     </task>
     <servers />
   </component>
@@ -221,9 +215,9 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2573" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577449756836" />
-    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1577478688805">
+    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1577479305789">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577478688805" />
+    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577479305789" />
   </component>
 </project>

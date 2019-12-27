@@ -17,16 +17,16 @@ class ServiceBase
      * @throws \Exception When tablename or createdById is null
      * @param array $args Arguments to be inserted in the table
      */
-    public function bulkInsert($createdById, array $args){
+    public function bulkInsert($createdById=0, array $args){
         if($createdById && $this->tableName){
             $now = Carbon::now('ist')->toDateTimeString();
-            error_log(\GuzzleHttp\json_encode($args));
+            //error_log(json_encode($args));
             foreach ($args as &$arg) {
                 $arg['created_by'] = $createdById;
                 $arg['created_at'] = $now;
                 $arg['updated_at'] = $now;
             }
-            error_log(\GuzzleHttp\json_encode($args));
+            //error_log(json_encode($args));
 
             DB::beginTransaction();
             DB::table($this->tableName)->insert($args);
