@@ -5,9 +5,8 @@ A GraphQL API for Attendo app
 ### Plugins/Add ons
 1) Lighthouse (GQL Integration) : https://lighthouse-php.com/master/getting-started/tutorial.html2
 
-###Queries
-
-##### Lectures
+### Lectures
+####Queries
 Lecture By id
 ```$xslt
 query{
@@ -83,3 +82,33 @@ query{
   }
 }
 ```
+
+####Mutation
+Bulk create lectures,
+preferably 20 in 1 call.
+```$xslt
+mutation{
+  createLectures(input: 
+  	[{
+      teacher_id: 2,
+      day_of_week: 3,
+      department_id:1,
+      lecture_number: 1,
+      subject_name: "HELLo"
+    },
+      {
+      teacher_id: 2,
+      day_of_week: 3,
+      department_id:1,
+      lecture_number: 2,
+      subject_name: "HELLo world"
+      }
+    ]
+  ){
+    message
+  }
+}
+```
+
+
+
