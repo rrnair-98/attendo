@@ -26,8 +26,8 @@ extend type Mutation {
 }
 
 extend type Query {
-    attendanceByStudentId(fromDate: String!, toDate: String!, studentId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Mutations\\AttendanceQueryResolver@getAttendanceByStudentId")
-    attendanceByLecture(fromDate: String!, toDate: String!, lectureId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Mutations\\AttendanceQueryResolver@getAttendanceByLectureId")
-    attendanceByStudentAndLecture(fromDate: String!, toDate: String!, studentId: ID!, lectureId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Mutations\\AttendanceQueryResolver@getAttendanceByStudentAndLecture")
+    attendanceByStudent(start: String!, end: String!, studentId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\AttendanceQueryResolver@getAttendanceByStudentId")
+    attendanceByLecture(start: String!, end: String!, lectureId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\AttendanceQueryResolver@getAttendanceByLectureId")
+    attendanceByStudentAndLecture(start: String!, end: String!, studentId: ID!, lectureId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Queries\\AttendanceQueryResolver@getAttendanceByStudentAndLecture")
 
 }

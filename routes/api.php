@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('attendance/student/{start}/{end}/{studentId}/', 'AttendanceQueryController@getByStudentId');
+Route::get('attendance/lecture/{start}/{end}/{lectureId}/', 'AttendanceQueryController@getByLectureId');
+Route::get('attendance/student-and-lecture/{start}/{end}/{studentId}/{lectureId}/', 'AttendanceQueryController@getByStudentAndLectureId');
+Route::resource('attendance', 'AttendanceQueryController');

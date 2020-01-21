@@ -19,18 +19,20 @@ class AttendanceQueryResolver
     }
 
     public function getAttendanceByLectureId($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo){
-        return $this->attendanceService->attendanceByLectureId(Carbon::createFromTimeString($args["start"]),
-            Carbon::createFromTimeString($args["end"]), $args["lectureId"]);
+        return $this->attendanceService->attendanceByLectureId(Carbon::parse($args["start"]),
+            Carbon::parse($args["end"]), $args["lectureId"]);
     }
 
     public function getAttendanceByStudentId($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo){
-        return $this->attendanceService->attendanceByStudentId(Carbon::createFromTimeString($args["start"]),
-            Carbon::createFromTimeString($args["end"]), $args["studentId"]);
+        error_log(json_encode($this->attendanceService->attendanceByStudentId(Carbon::parse($args["start"]),
+            Carbon::parse($args["end"]), $args["studentId"])));
+        return $this->attendanceService->attendanceByStudentId(Carbon::parse($args["start"]),
+            Carbon::parse($args["end"]), $args["studentId"]);
     }
 
     public function getAttendanceByStudentAndLecture($root, array $args, GraphQLContext $context, ResolveInfo $info){
-        return $this->attendanceService->attendanceByStudentAndLecture(Carbon::createFromTimeString($args["start"]),
-            Carbon::createFromTimeString($args["end"]), $args["studentId"], $args["lectureId"]);
+        return $this->attendanceService->attendanceByStudentAndLecture(Carbon::parse($args["start"]),
+            Carbon::parse($args["end"]), $args["studentId"], $args["lectureId"]);
     }
 
 

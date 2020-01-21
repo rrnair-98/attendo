@@ -21,11 +21,11 @@ class AttendanceService
         from
             (select student_id, count(student_id)lecs_attended, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by student_id, lecture_id) att,
             (select count(lecture_id) as num, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by lecture_id) lecs
         inner join
             lectures
@@ -41,11 +41,11 @@ class AttendanceService
         from
             (select student_id, count(student_id)lecs_attended, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by student_id, lecture_id) att,
             (select count(lecture_id) as num, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by lecture_id) lecs
         inner join
             lectures
@@ -63,14 +63,14 @@ class AttendanceService
         from
             (select student_id, count(student_id)lecs_attended, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by student_id, lecture_id) att,
             (select count(lecture_id) as num, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by lecture_id) lecs
         inner join
-            lectures
+            lectures , users
         where
             lectures.id = att.lecture_id and
             lecs.lecture_id = att.lecture_id and
@@ -85,11 +85,11 @@ class AttendanceService
         from
             (select student_id, count(student_id)lecs_attended, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by student_id, lecture_id) att,
             (select count(lecture_id) as num, lecture_id
                 from attendances
-                    where created_at >= '%s' and created_at <='%s'
+                    where CAST(created_at as DATE) between {d\"%s\"}  and {d\"%s\"}
                         group by lecture_id) lecs
         inner join
             lectures
@@ -116,7 +116,7 @@ class AttendanceService
      * Returns attendance of all students in all subjects.
      */
     public function attendanceBetweenDates(Carbon $date1, Carbon $date2){
-        return DB::select(sprintf(AttendanceService::$ALL_STUDENT_ATT_BW_DATES_QUERY, $date1, $date2, $date1 , $date2));
+        return DB::select(sprintf(AttendanceService::$ALL_STUDENT_ATT_BW_DATES_QUERY, $date1->toDateString(), $date2->toDateString(), $date1->toDateString() , $date2->toDateString()));
     }
 
     /**
@@ -127,7 +127,10 @@ class AttendanceService
      * @return array
      */
     public function attendanceByLectureId(Carbon $start, Carbon $end, int $lectureId){
+        $start = $start->toDateString();
+        $end = $end->toDateString();
         return DB::select(sprintf(AttendanceService::$ATT_BY_LECTURE_ID, $start, $end, $start, $end, $lectureId));
+
     }
 
     /**
@@ -138,6 +141,10 @@ class AttendanceService
      * @return array
      */
     public function attendanceByStudentId(Carbon $start, Carbon $end, int $studentId){
+        $start = $start->toDateString();
+        $end = $end->toDateString();
+        error_log("ERE");
+        error_log("ASD".sprintf(AttendanceService::$STUDENT_ATT_BY_ID, $start, $end, $start, $end, $studentId));
         return DB::select(sprintf(AttendanceService::$STUDENT_ATT_BY_ID, $start, $end, $start, $end, $studentId));
     }
 
@@ -150,6 +157,8 @@ class AttendanceService
      * @return array
      */
     public function attendanceByStudentAndLecture(Carbon $start, Carbon $end, int $studentId, int $lectureId){
+        $start = $start->toDateString();
+        $end = $end->toDateString();
         return DB::select(sprintf(AttendanceService::$ATT_BY_LECTURE_ID_AND_STUDENT_ID, $start, $end, $start, $end,
             $lectureId, $studentId));
     }
