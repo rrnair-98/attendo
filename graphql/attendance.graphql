@@ -6,6 +6,15 @@ type Attendance{
     created_at: DateTime!
 }
 
+type AttendancePercentage{
+    student_id: ID!
+    percentage: Float!
+    lecture_id: ID!
+    lecs_attended: Int!
+    num: Int!
+    subject_name: String!
+}
+
 input AttendanceInput{
     teacher_id: ID!
     lecture_id: ID!
@@ -17,6 +26,8 @@ extend type Mutation {
 }
 
 extend type Query {
-    attendance(fromDate: Date!, toDate: Date!, studentId: ID!): [Attendance] @field(resolver)
+    attendanceByStudentId(fromDate: String!, toDate: String!, studentId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Mutations\\AttendanceQueryResolver@getAttendanceByStudentId")
+    attendanceByLecture(fromDate: String!, toDate: String!, lectureId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Mutations\\AttendanceQueryResolver@getAttendanceByLectureId")
+    attendanceByStudentAndLecture(fromDate: String!, toDate: String!, studentId: ID!, lectureId: ID!): [AttendancePercentage] @field(resolver: "App\\GraphQL\\Resolvers\\Mutations\\AttendanceQueryResolver@getAttendanceByStudentAndLecture")
 
 }
