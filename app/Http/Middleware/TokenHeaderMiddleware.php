@@ -15,9 +15,9 @@ class TokenHeaderMiddleware
     private $tokenService;
     private static $ERR_MESSAGE = "Bad request";
     private static $ERR_REASON = "No Authorization Header";
-    public function __construct()
+    public function __construct(TokenService $tokenService)
     {
-        $this->tokenService = new TokenService();
+        $this->tokenService = $tokenService;
     }
 
     /**
