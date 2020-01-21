@@ -33,4 +33,5 @@ class AttendanceQueryController extends Controller
 
 
 
+
 }
