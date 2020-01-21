@@ -29,9 +29,11 @@ class TokenHeaderMiddleware
      */
     public function handle(Request $request, Closure $next){
         $token = $request->header('Authorization');
+        if(is_null($token))
+            abort(499, "Authorization header token required");
         $accessToken = $this->tokenService->getAccessTokenWithTokenString($token);
         if(is_null($accessToken)){
-            abort(499, "Authorization header token required");
+            abort(498, "Authorization header token required");
         }
         $user = $accessToken->user;
         $request->setUserResolver(function() use ($user){
