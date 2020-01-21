@@ -27,7 +27,7 @@ class AttendanceTokenService
      * @return AttendanceToken
      */
     public function createToken(int $studentId, string $studentEmail){
-        $baseString = $studentId.Carbon::now('ist').$studentEmail.Str::random();
+        $baseString = $studentId.Carbon::now().$studentEmail.Str::random();
         $existingToken = $this->findCurrentlyActiveToken($studentId);
         if($existingToken != null)
             return $existingToken;
