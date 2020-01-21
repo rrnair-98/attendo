@@ -6,6 +6,7 @@ type Lecture{
     department_id: Int!
     lecture_number: Int!
     subject_name: String!
+    attendance: [Attendance!]
 }
 
 

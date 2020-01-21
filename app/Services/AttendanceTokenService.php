@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\AttendanceToken;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AttendanceTokenService
@@ -48,6 +49,21 @@ class AttendanceTokenService
             ->where('created_at', '>=', Carbon::now()->subMinutes(AttendanceToken::TOKEN_VALIDITY_IN_MINUTES))
             ->where('created_at', '<=', Carbon::now())
             ->first();
+    }
+
+    /**
+     * Returns a result set of students joined to attendance_tokens with valid
+     * @param array $studentTokens
+     * @return \Illuminate\Support\Collection
+     */
+    public function getValidStudentData(array $studentTokens){
+        return DB::table('attendance_tokens')
+            ->join('users', 'users.id','=', 'attendance_tokens.student_id')
+            ->whereIn('attendance_tokens.token', $studentTokens)
+            ->where('attendance_tokens.created_at', '>=', Carbon::now()->subMinutes(AttendanceToken::TOKEN_VALIDITY_IN_MINUTES))
+            ->where('attendance_tokens.created_at', '<=', Carbon::now())
+            ->pluck('users.id as student_id', 'attendance_tokens.token as student_token')
+            ->get();
     }
 
 }
