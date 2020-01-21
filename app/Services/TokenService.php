@@ -52,7 +52,9 @@ class TokenService
      */
     public function getAccessTokenWithTokenString(string $token) {
         $now =  round(microtime(true) * 1000);
-        return AccessToken::where('token', '=', $token)->where('expires_at', '>', $now)->with('user')->first();
+        if($token)
+            return AccessToken::where('token', '=', $token)->where('expires_at', '>', $now)->with('user')->first();
+        return null;
     }
 
     /**
