@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\AttendanceToken;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AttendanceTokenService
@@ -26,7 +27,7 @@ class AttendanceTokenService
      * @return AttendanceToken
      */
     public function createToken(int $studentId, string $studentEmail){
-        $baseString = $studentId.Carbon::now('ist').$studentEmail.Str::random();
+        $baseString = $studentId.Carbon::now().$studentEmail.Str::random();
         $existingToken = $this->findCurrentlyActiveToken($studentId);
         if($existingToken != null)
             return $existingToken;
@@ -48,6 +49,28 @@ class AttendanceTokenService
             ->where('created_at', '>=', Carbon::now()->subMinutes(AttendanceToken::TOKEN_VALIDITY_IN_MINUTES))
             ->where('created_at', '<=', Carbon::now())
             ->first();
+    }
+
+    /**
+     * Returns a result set of students joined to attendance_tokens with valid
+     * @param array $studentTokens
+     * @param int $teacherId To be appended in the resultant rows
+     * @param int $lectureId To be appended in the resultant rows
+     * @return \Illuminate\Support\Collection
+     */
+    public function getValidStudentDataFromTokens(array $studentTokens, int $teacherId, int $lectureId){
+        foreach ($studentTokens as &$token){
+            $token = "'$token'";
+        }
+        return DB::table('attendance_tokens')
+            //todo remove already used token from this join
+            ->join('users', 'users.id','=', 'attendance_tokens.student_id')
+            ->whereIn('attendance_tokens.token', $studentTokens)
+            ->where('attendance_tokens.created_at', '>=', Carbon::now()->subMinutes(AttendanceToken::TOKEN_VALIDITY_IN_MINUTES))
+            ->where('attendance_tokens.created_at', '<=', Carbon::now())
+            ->select('users.id as student_id', 'attendance_tokens.token as student_token',
+                DB::raw("$teacherId as teacher_id") , DB::raw("$lectureId as lecture_id"))
+            ->get();
     }
 
 }

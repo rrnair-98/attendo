@@ -14,6 +14,6 @@ class StudentMiddleware extends AuthorizationMiddlewareBase
         $user = $request->user;
         if($user->role == User::ROLE_STUDENT)
             return $next($request);
-        throw new CustomException(self::$ERR_MESSAGE, self::$REASON);
+        abort(403, "Forbidden.You are not permitted to perform this action");
     }
 }

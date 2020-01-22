@@ -14,6 +14,6 @@ class TeacherMiddleware extends AuthorizationMiddlewareBase
         $user = $request->user;
         if($user->role >= User::ROLE_TEACHER)
             return $next($request);
-        throw new CustomException(self::$ERR_MESSAGE, self::$REASON);
+        abort(403, "forbidden");
     }
 }

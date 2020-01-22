@@ -16,8 +16,10 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('teacher_id')->index();
-            $table->bigInteger('teacher_lecture_id')->index();// to be inserted by the teacher
+            $table->bigInteger('lecture_id')->index();// to be inserted by the teacher
+            $table->bigInteger('student_id')->index();
             $table->string('student_token')->unique();
+            $table->bigInteger('created_by_id');
             $table->timestamps();
         });
     }

@@ -22,9 +22,11 @@ class TokenService
     public function generateToken(User $user): AccessToken{
 
         $arr = $this->getTokenFieldsInArray($user->id);
-        return AccessToken::create(['user_id'=>$user->id, 'created_at'=>$arr[0], 'expires_at'=>$arr[1],
+        $data = AccessToken::create(['user_id'=>$user->id, 'created_at'=>$arr[0], 'expires_at'=>$arr[1],
             'refresh_token_expires_at'=>$arr[2], 'token'=>$arr[3],
             'refresh_token'=>$arr[4]]);
+        $data['role'] = $user->role;
+        return $data;
     }
 
     /**
@@ -52,7 +54,9 @@ class TokenService
      */
     public function getAccessTokenWithTokenString(string $token) {
         $now =  round(microtime(true) * 1000);
-        return AccessToken::where('token', '=', $token)->where('expires_at', '>', $now)->with('user')->first();
+        if($token)
+            return AccessToken::where('token', '=', $token)->where('expires_at', '>', $now)->with('user')->first();
+        return null;
     }
 
     /**

@@ -15,10 +15,11 @@ class UsersTableSeeder extends Seeder
         $i=0;
         $faker = Faker\Factory::create();
         while(++$i <= 3) {
+            $password = hash('sha256', "temp");
             \Illuminate\Support\Facades\DB::table('users')->insert(
                 [
                     'email' => $faker->unique()->email,
-                    'password' => 'temp',
+                    'password' => $password,
                     'department_id' => 1,
                     'role' => \App\User::ROLE_TEACHER,
                     'name' => \Illuminate\Support\Str::random()
@@ -27,7 +28,7 @@ class UsersTableSeeder extends Seeder
             \Illuminate\Support\Facades\DB::table('users')->insert(
                 [
                     'email' => $faker->unique()->email,
-                    'password' => 'temp',
+                    'password' => $password,
                     'department_id' => 1,
                     'role' => \App\User::ROLE_STUDENT,
                     'name' => \Illuminate\Support\Str::random()
@@ -36,7 +37,7 @@ class UsersTableSeeder extends Seeder
             \Illuminate\Support\Facades\DB::table('users')->insert(
                 [
                     'email' => $faker->unique()->email,
-                    'password' => 'temp',
+                    'password' => $password,
                     'department_id' => 1,
                     'role' => \App\User::ROLE_HOD,
                     'name' => \Illuminate\Support\Str::random()

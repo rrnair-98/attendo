@@ -16,3 +16,20 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', "\App\Http\Controllers\LoginController@postLogin");
+
+Route::post('attendanceToken/create', 'AttendanceTokenController@postCreateAttendanceToken')->middleware('token', 'student');
+
+Route::get('lectures/department/{departmentId}', 'LectureController@getByDepartment');
+Route::get('lectures/teacher/{teacherId}', 'LectureController@getByTeacher');
+
+/**
+ * TODO - APPLY middleware to these methods.
+ */
+
+Route::get('attendance/student/{start}/{end}/{studentId}/', 'AttendanceController@getByStudentId');
+Route::get('attendance/lecture/{start}/{end}/{lectureId}/', 'AttendanceController@getByLectureId');
+Route::get('attendance/student-and-lecture/{start}/{end}/{studentId}/{lectureId}/', 'AttendanceController@getByStudentAndLectureId');
+Route::post('attendance/{teacherId}/{lectureId}/', 'AttendanceController@postBulkInsertAttendance')->middleware('token', 'teacher');
+Route::resource('attendance', 'AttendanceController');

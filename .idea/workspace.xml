@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/GraphQL/Resolvers/Mutations/AttendanceTokenMutationResolver.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/GraphQL/Resolvers/Queries/AttendanceTokenQueryResolver.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/AttendanceTokenService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/attendance_token.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AttendanceToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AttendanceToken.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/GraphQL/Resolvers/Mutations/LectureMutationResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/GraphQL/Resolvers/Mutations/LectureMutationResolver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_26_210904_create_attendance_tokens_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_26_210904_create_attendance_tokens_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendanceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendanceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LectureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LectureController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/AttendanceService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AttendanceService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/AttendanceTokenService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AttendanceTokenService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/TokenService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TokenService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +21,23 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="attendo" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -140,16 +154,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/GraphQL/Exceptions" />
-    <property name="settings.editor.selected.configurable" value="Laravel.SettingsForm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Services" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/GraphQL/Exceptions" />
       <recent name="$PROJECT_DIR$/app/Services" />
+      <recent name="$PROJECT_DIR$/app/GraphQL/Resolvers/Mutations" />
+      <recent name="$PROJECT_DIR$/app/GraphQL/Exceptions" />
       <recent name="$PROJECT_DIR$/app/Http/Middleware" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -165,7 +181,22 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@7409c34a" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@13f42752" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -184,7 +215,15 @@
       <updated>1577388438233</updated>
       <workItem from="1577388442922" duration="3791000" />
       <workItem from="1577392252251" duration="10200000" />
-      <workItem from="1577449758195" duration="14055000" />
+      <workItem from="1577449758195" duration="15542000" />
+      <workItem from="1577527363035" duration="2320000" />
+      <workItem from="1577532378907" duration="5472000" />
+      <workItem from="1578133041764" duration="414000" />
+      <workItem from="1578134817041" duration="8150000" />
+      <workItem from="1578665979762" duration="1813000" />
+      <workItem from="1579167352509" duration="863000" />
+      <workItem from="1579489760885" duration="7602000" />
+      <workItem from="1579605323648" duration="30238000" />
     </task>
     <servers />
   </component>
@@ -195,37 +234,84 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2641" y="324" width="467" height="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577433350764">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="555" y="180" width="800" height="675" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579607111829">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="555" y="180" width="800" height="675" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579607111829" />
+    <state x="721" y="312" width="611" height="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579629619926">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="721" y="312" width="611" height="387" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1579629619926" />
     <state x="2641" y="324" width="467" height="387" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577433350764" />
-    <state x="2632" y="123" width="476" height="789" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577482085813">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="656" y="0" width="1254" height="1038" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579629817312">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="656" y="0" width="1254" height="1038" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579629817312" />
     <state x="2632" y="123" width="476" height="789" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482085813" />
-    <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577482668681">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579619093372">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579619093372" />
     <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482668681" />
     <state x="2663" y="277" width="424" height="482" key="FileChooserDialogImpl" timestamp="1577389106729">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="277" width="424" height="482" key="FileChooserDialogImpl/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577389106729" />
-    <state x="2596" y="335" width="641" height="366" key="NewPhpClassDialog" timestamp="1577481258388">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1323" height="282" key="GridCell.Tab.0.bottom" timestamp="1579639565717">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2596" y="335" width="641" height="366" key="NewPhpClassDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577481258388" />
-    <state x="2384" y="154" key="SettingsEditor" timestamp="1577449860188">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1323" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579639565717" />
+    <state width="1323" height="282" key="GridCell.Tab.0.center" timestamp="1579639565716">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1323" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579639565716" />
+    <state width="1323" height="282" key="GridCell.Tab.0.left" timestamp="1579639565715">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579639565715" />
+    <state width="1323" height="282" key="GridCell.Tab.0.right" timestamp="1579639565716">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579639565716" />
+    <state width="218" height="483" key="HiddenNamespacesPopup" timestamp="1579639302781">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="218" height="483" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1579639302781" />
+    <state x="676" y="323" width="641" height="366" key="NewPhpClassDialog" timestamp="1577538149564">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="676" y="323" width="641" height="366" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577538149564" />
+    <state x="2596" y="335" width="641" height="366" key="NewPhpClassDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577488323822" />
+    <state x="464" y="148" key="SettingsEditor" timestamp="1579639188016">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="464" y="148" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1579639188016" />
     <state x="2384" y="154" key="SettingsEditor/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577449860188" />
-    <state x="2573" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1577449756836">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="555" y="255" width="800" height="526" key="Vcs.Push.Dialog.v2" timestamp="1579612135711">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="555" y="255" width="800" height="526" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1579612135711" />
+    <state x="653" y="353" key="com.intellij.ide.util.TipDialog" timestamp="1579605323565">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="653" y="353" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579605323565" />
     <state x="2573" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577449756836" />
-    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1577487034309">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="641" y="123" width="628" height="795" key="find.popup" timestamp="1579634318131">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577487034309" />
+    <state x="641" y="123" width="628" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1579634318131" />
+    <state x="609" y="239" width="700" height="530" key="recent.locations.popup" timestamp="1579616029296">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="609" y="239" width="700" height="530" key="recent.locations.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1579616029296" />
+    <state x="624" y="237" key="run.anything.popup" timestamp="1577535718024">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="624" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577535718024" />
+    <state x="623" y="220" width="672" height="653" key="search.everywhere.popup" timestamp="1579690070610">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="220" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1579690070610" />
+    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577488350812" />
   </component>
 </project>

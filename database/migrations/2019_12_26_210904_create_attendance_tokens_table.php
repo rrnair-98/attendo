@@ -22,6 +22,8 @@ class CreateAttendanceTokensTable extends Migration
         });
     }
 
+
+
     /**
      * Reverse the migrations.
      *

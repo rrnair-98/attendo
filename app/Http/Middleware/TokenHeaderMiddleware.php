@@ -15,9 +15,9 @@ class TokenHeaderMiddleware
     private $tokenService;
     private static $ERR_MESSAGE = "Bad request";
     private static $ERR_REASON = "No Authorization Header";
-    public function __construct()
+    public function __construct(TokenService $tokenService)
     {
-        $this->tokenService = new TokenService();
+        $this->tokenService = $tokenService;
     }
 
     /**
@@ -29,9 +29,11 @@ class TokenHeaderMiddleware
      */
     public function handle(Request $request, Closure $next){
         $token = $request->header('Authorization');
+        if(is_null($token))
+            abort(499, "Authorization header token required");
         $accessToken = $this->tokenService->getAccessTokenWithTokenString($token);
         if(is_null($accessToken)){
-            throw new CustomException(TokenHeaderMiddleware::$ERR_MESSAGE, TokenHeaderMiddleware::$ERR_REASON);
+            abort(498, "Authorization header token required");
         }
         $user = $accessToken->user;
         $request->setUserResolver(function() use ($user){

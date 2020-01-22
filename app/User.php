@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,6 +17,16 @@ class User extends Authenticatable
     const ROLE_TEACHER = 8;
     const ROLE_HOD = 65536;
     const ROLE_ADMIN = 2147483647;
+
+
+    public function attendanceToken(): HasMany{
+        return $this->hasMany(\App\AttendanceToken::class);
+    }
+
+    public function taughtLecture(): HasMany{
+        return $this->$this->hasMany(\App\Lecture::class);
+    }
+
 
     /**
      * The attributes that are mass assignable.
