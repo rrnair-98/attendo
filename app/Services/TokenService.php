@@ -22,9 +22,11 @@ class TokenService
     public function generateToken(User $user): AccessToken{
 
         $arr = $this->getTokenFieldsInArray($user->id);
-        return AccessToken::create(['user_id'=>$user->id, 'created_at'=>$arr[0], 'expires_at'=>$arr[1],
+        $data = AccessToken::create(['user_id'=>$user->id, 'created_at'=>$arr[0], 'expires_at'=>$arr[1],
             'refresh_token_expires_at'=>$arr[2], 'token'=>$arr[3],
             'refresh_token'=>$arr[4]]);
+        $data['role'] = $user->role;
+        return $data;
     }
 
     /**

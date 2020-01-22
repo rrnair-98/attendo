@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 class AttendanceService
 {
 
+    private $attendanceTokenService;
 
     public static $ALL_STUDENT_ATT_BW_DATES_QUERY = "
         select
@@ -100,16 +101,25 @@ class AttendanceService
             att.student_id = %s";
 
 
+    public function __construct(AttendanceTokenService $tokenService)
+    {
+        $this->attendanceTokenService = $tokenService;
+    }
+
     public function getById(int $id): Attendance{
         return Attendance::find($id);
     }
 
-    public function bulkInsert(int $createdById, array $args)
+    public function bulkInsert(int $teacherId, int $lectureId, array $tokens)
     {
-        $data = $this->getValidArgsWithDates($args);
-        DB::beginTransaction();
-        DB::table($this->tableName)->insert($data);
-        DB::commit();
+        $data = $this->attendanceTokenService->getValidStudentDataFromTokens($tokens, $teacherId, $lectureId);
+        if(count($data)) {
+            DB::beginTransaction();
+            DB::table('attendances')->insert($data);
+            DB::commit();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -163,29 +173,6 @@ class AttendanceService
             $lectureId, $studentId));
     }
 
-
-    private function getValidArgsWithDates(array $args) : array {
-        $validData = array();
-        $tempList = array();
-        $teacherId = $args[0]['teacher_id'];
-        $lecture_id = $args[0]['lecture_id'];
-        $i = 0;
-        foreach ($args as $arg){
-            $tempList[$i++] = $arg['student_token'];
-        }
-
-        $i = 0;
-        $validStudents = $this->attendanceToken->getValidStudentData($tempList);
-        foreach ($validStudents as &$valid){
-            $validData[$i]["created_at"] = Carbon::now();
-            $valid[$i]["teacher_id"] = $teacherId;
-            $valid[$i]["lecture_id"] = $lecture_id;
-            ++$i;
-        }
-
-        return $validData;
-
-    }
 
 
 

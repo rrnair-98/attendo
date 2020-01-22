@@ -6,7 +6,7 @@ use App\Services\AttendanceService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class AttendanceQueryController extends Controller
+class AttendanceController extends Controller
 {
     //
     private $attendanceService;
@@ -29,6 +29,22 @@ class AttendanceQueryController extends Controller
 
     public function getByStudentAndLectureId(string $start, string $end, int $studentId, int $lectureId){
         return response($this->attendanceService->attendanceByStudentAndLecture(Carbon::parse($start), Carbon::parse($end), $studentId, $lectureId));
+    }
+
+    public function postBulkInsertAttendance(Request $request, int $teacherId, int $lectureId){
+        if(count($request->json()->all())){
+            $requestBody = $request->json()->all();
+            $studentTokens = $requestBody["tokens"];
+            error_log(count($studentTokens));
+            if($teacherId == $request->user->id && $teacherId && $lectureId && count($studentTokens)){
+                $this->attendanceService->bulkInsert($teacherId, $lectureId, $studentTokens);
+                return response("ok");
+            }
+            abort(400, 'Bad request');
+        }
+        error_log(count($request->json()->all()));
+        abort(400, 'Bad request');
+
     }
 
 
