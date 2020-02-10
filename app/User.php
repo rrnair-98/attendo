@@ -24,7 +24,7 @@ class User extends Authenticatable
     }
 
     public function taughtLecture(): HasMany{
-        return $this->$this->hasMany(\App\Lecture::class);
+            return $this->$this->hasMany(\App\Lecture::class);
     }
 
 
