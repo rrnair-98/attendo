@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('hello', function (Request $request){
-	return "HELLO WORLD";
+Route::get('hello/', function(Request $request){
+    return json_encode(['message' =>'hello'] );
 });
 Route::post('login', "\App\Http\Controllers\LoginController@postLogin");
 
