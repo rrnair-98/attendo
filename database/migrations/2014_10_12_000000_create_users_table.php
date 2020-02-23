@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->integer('department_id');// for now comps, also holds the semester in the lsbs
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->string('password');
             $table->json('description')->index();
             $table->timestamps();
