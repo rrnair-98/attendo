@@ -14,35 +14,59 @@ class UsersTableSeeder extends Seeder
         //
         $i=0;
         $faker = Faker\Factory::create();
-        while(++$i <= 3) {
-            $password = hash('sha256', "temp");
+        $password = hash('sha256', 'helloWorld');
+        $og = \App\User::create([
+            'email' => "anton@gmail.com",
+            'password' => $password,
+            'role' => \App\User::ROLE_ADMIN,
+            'name' => "Anton Leme",
+            'gender'    => rand(1,2),
+            'created_by'=> 0
+        ]);
+        \App\User::create([
+            'email' => "sonOfAnton@gmail.com",
+            'password' => $password,
+            'role' => \App\User::ROLE_ADMIN,
+            'name' => "Son of Anton Leme",
+            'gender'    => rand(1,2),
+            'created_by'=> 0
+        ]);
+        while(++$i <= 5) {
             \Illuminate\Support\Facades\DB::table('users')->insert(
                 [
                     'email' => $faker->unique()->email,
                     'password' => $password,
-                    'department_id' => 1,
                     'role' => \App\User::ROLE_TEACHER,
-                    'name' => \Illuminate\Support\Str::random()
-                ]
-            );
-            \Illuminate\Support\Facades\DB::table('users')->insert(
-                [
-                    'email' => $faker->unique()->email,
-                    'password' => $password,
-                    'department_id' => 1,
-                    'role' => \App\User::ROLE_STUDENT,
-                    'name' => \Illuminate\Support\Str::random()
-                ]
-            );
-            \Illuminate\Support\Facades\DB::table('users')->insert(
-                [
-                    'email' => $faker->unique()->email,
-                    'password' => $password,
-                    'department_id' => 1,
-                    'role' => \App\User::ROLE_HOD,
-                    'name' => \Illuminate\Support\Str::random()
+                    'name' => $faker->name,
+                    'gender' => rand(1, 2),
+                    'created_by' => $og->id
                 ]
             );
         }
+        $i=-1;
+        while(++$i < 60) {
+            \Illuminate\Support\Facades\DB::table('users')->insert(
+                [
+                    'email' => $faker->unique()->email,
+                    'password' => $password,
+                    'role' => \App\User::ROLE_STUDENT,
+                    'name' => $faker->name,
+                    'gender' => rand(1, 2),
+                    'created_by' => $og->id
+                ]
+            );
+        }
+        \Illuminate\Support\Facades\DB::table('users')->insert(
+            [
+                'email' => $faker->unique()->email,
+                'password' => $password,
+                'role' => \App\User::ROLE_HOD,
+                'name' => $faker->name,
+                'gender'    => rand(1,2),
+                'created_by'=> $og->id
+            ]
+        );
+
     }
+
 }
