@@ -1,87 +1,133 @@
 <?php
+namespace App\Transactors;
 
 
-namespace App\Services;
-
-use App\AccessToken;
+use App\Helpers\Utils;
+use App\Token;
 use App\User;
-use DateTime;
-use Illuminate\Support\Str;
 
-/**
- * Class TokenService
- * @package App\Services
- */
 class TokenService
 {
-    /**
-     * Create a Token given
-     * @param User $user
-     * @return AccessToken
-     */
-    public function generateToken(User $user): AccessToken{
-
-        $arr = $this->getTokenFieldsInArray($user->id);
-        $data = AccessToken::create(['user_id'=>$user->id, 'created_at'=>$arr[0], 'expires_at'=>$arr[1],
-            'refresh_token_expires_at'=>$arr[2], 'token'=>$arr[3],
-            'refresh_token'=>$arr[4]]);
-        $data['role'] = $user->role;
-        return $data;
-    }
 
     /**
-     * Generates and updates a row in AccessToken table given the refresh token.
-     * @param $refreshToken
-     * @return AccessToken| null
+     * @var int This value is to be added to refresh token expiry
      */
-    public function refreshToken($refreshToken){
-        $now =  round(microtime(true) * 1000);
-        $authToken = AccessToken::where('refresh_token', '=', $refreshToken)->where('refresh_token_expires_at', '>', $now)->with('user')->first();
-        if ($authToken){
-            $arr = $this->getTokenFieldsInArray($authToken->user_id);
-            $authToken->update(['updated_at'=>$arr[0],'expires_at'=>$arr[1],
-            'refresh_token_expires_at'=>$arr[2], 'token'=>$arr[3],
-            'refresh_token'=>$arr[4]]);
-            return $authToken;
-        }
-        return $authToken;
-    }
+    private static $REFRESH_EXPIRY_TIME_IN_MILLIS = 6048000000000;
+    /**
+     * @var int This value is to be added to access token expiry
+     */
+    private static $ACCESS_TOKEN_EXPIRY_TIME_IN_MILLIS = 120000000000;
+
 
     /**
-     * Finds an AccessToken with this token string.
-     * @param string $token The token to query the table with
-     * @return AccessToken
+     * This method binds or creates token for the user.
+     * This method is to be called everytime the user logs in.
+     * @param User $user The user instance that must be bound to a token or whose token must be updated.
+     * @return Token $token The token instance that was created or updated.
      */
-    public function getAccessTokenWithTokenString(string $token) {
-        $now =  round(microtime(true) * 1000);
+    public function createOrRefresh(User $user)
+    {
+        $token = $this->getTokenByUser($user);
         if($token)
-            return AccessToken::where('token', '=', $token)->where('expires_at', '>', $now)->with('user')->first();
-        return null;
+        {
+            $this->setToken($token, $user);
+
+            $token->save();
+            return $token;
+
+        }
+
+        $token = new Token;
+        $this->setToken($token, $user);
+        $token->user_id = $user->id;
+        $token->save();
+        return $token;
+
+    }
+
+
+    public function refresh(Token $token)
+    {
+        $user = User::where('id', $token->user_id)->first();
+
+        $this->setToken($token, $user);
+        $token->save();
+        return $token;
+    }
+
+
+    /**
+     * @param User $user The user whose token is to be retrieved
+     * @return Token A token instance that is bound to this user
+     */
+    public function getTokenByUser(User $user)
+    {
+        return Token::where("user_id", $user->id)->first();
     }
 
     /**
-     * Revokes a token by deleting it given the token string.
-     * @param string $token The token string to query the table with
+     * This method returns a user instance if the user access token is valid.
+     * @param String $userAccessToken The token that the database must be queried with.
+     * @return User user The user bound to the provided token.
      */
-    public function revokeToken(string $token){
-        $token = AccessToken::where('token', '=', $token)->first();
-        $token->forceDelete();
+    public function getUserByAccessToken($userAccessToken)
+    {
+        $token = $this->getTokenByAccessToken($userAccessToken);
+        return $token? $token->user(): null;
     }
 
     /**
-     * Generates the fields required for creating an AccessToken.
-     * NOTE this method is to be called while generating a new token or while refreshing an AccessToken instance.
-     * @param string arg Some random value to be added to the AccessToken.
-     * @return array
+     * This method returns a user instance if the user refresh token is valid
+     * @param $refreshToken The token that th database must be queried with
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne|null
      */
-    private function getTokenFieldsInArray(string $arg = "2r23ewasd"){
-        $now = round(microtime(true) * 1000);
-        $expiry = $now + AccessToken::$ACESS_TOKEN_DURATION_MILLISECONDS;
-        $refreshTokenExpiry = $now + AccessToken::$REFRESH_TOKEN_DURATION_MILLISECONDS;
-        $accessTokenString = hash('sha256', $arg.$now.Str::random(10));
-        $refreshTokenString = hash('sha256', $arg.$now.Str::random(10));
-        return [$now, $expiry, $refreshTokenExpiry, $accessTokenString, $refreshTokenString];
+    public function getUserByRefreshToken($refreshToken){
+        $token = $this->getTokenByRefreshToken($refreshToken);
+
+        return $token ? $token->user() : null;
     }
+
+
+    /**
+     * This method returns a Token instance given the refresh token of the user.
+     * @param $refreshToken
+     * @return Token
+     */
+    public function getTokenByRefreshToken($refreshToken)
+    {
+        $token = Token::where("refresh_token", $refreshToken)->where("refresh_token_expiry", ">", Utils::getSystemTimeInMillis())->first();
+        return $token;
+    }
+
+    /**
+     * This method returns a Token instance given the access Token of the user.
+     * @param $accessToken
+     * @return Token
+     */
+    public function getTokenByAccessToken($accessToken)
+    {
+        return Token::where("access_token", $accessToken)->where("access_token_expiry", ">", Utils::getSystemTimeInMillis())->first();
+    }
+
+    public function deleteTokenByUserId($userId){
+        return Token::where('user_id', $userId)->delete();
+    }
+
+    private function setToken(Token $token, User $user){
+        $currentTimeMillis = Utils::getSystemTimeInMillis();
+
+        $s = $user->id."".$user->email.time();
+        $token->refresh_token = base64_encode(bcrypt($s));
+
+        $token->refresh_token_expiry =  $currentTimeMillis + TokenService::$REFRESH_EXPIRY_TIME_IN_MILLIS;
+
+        $s2 = $user->id . $user->email . time();
+
+        $token->access_token = base64_encode(bcrypt($s2));
+        $token->access_token_expiry = round(microtime(true) * 1000) + TokenService::$ACCESS_TOKEN_EXPIRY_TIME_IN_MILLIS;
+    }
+
+
 
 
 }
