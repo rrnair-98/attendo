@@ -4,9 +4,7 @@
 namespace App\Http\Middleware;
 
 
-use App\AccessToken;
-use App\GraphQL\Exceptions\CustomException;
-use App\Services\TokenService;
+use App\Transactors\TokenService;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -31,7 +29,7 @@ class TokenHeaderMiddleware
         $token = $request->header('Authorization');
         if(is_null($token))
             abort(499, "Authorization header token required");
-        $accessToken = $this->tokenService->getAccessTokenWithTokenString($token);
+        $accessToken = $this->tokenService->getTokenByAccessToken($token);
         if(is_null($accessToken)){
             abort(498, "Authorization header token required");
         }
@@ -43,9 +41,6 @@ class TokenHeaderMiddleware
         return $next($request);
 
     }
-
-
-
 
 
 }
