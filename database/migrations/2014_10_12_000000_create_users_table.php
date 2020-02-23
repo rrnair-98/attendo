@@ -21,9 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique()->nullable();
             $table->string('password');
+            $table->text('img_url');
             $table->json('description')->index();
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
         });
     }
 
