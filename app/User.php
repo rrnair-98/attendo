@@ -10,7 +10,6 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
     use SoftDeletes;
 
     const ROLE_STUDENT = 0;
@@ -19,21 +18,33 @@ class User extends Authenticatable
     const ROLE_ADMIN = 2147483647;
 
 
-    public function attendanceToken(): HasMany{
-        return $this->hasMany(\App\AttendanceToken::class);
-    }
+    public const CREATE_VALIDATION_RULES = array(
+        'role' => 'in:0,8,65536,2147483647',
+        'department_id' => 'required',
+        'name'  => 'min:3|max:255',
+        'phone' => 'unique:users',
+        'password'=>'required',
+        'email' =>'unique:users',
+        'created_by'=> 'exists:users,id'
+    );
 
-    public function taughtLecture(): HasMany{
-            return $this->$this->hasMany(\App\Lecture::class);
-    }
-
+    public const UPDATE_VALIDATION_RULES = array(
+        'role' => 'in:0,8,65536,2147483647',
+        'department_id' => 'required',
+        'name'  => 'min:3|max:255',
+        'phone' => 'unique:users',
+        'password'=>'required',
+        'email' =>'unique:users',
+        'updated_by' => 'exists:users,id',
+        'deleted_at'    => 'date_format|Y-m-d H:i:s'
+    );
 
     /**
      * The attributes that are mass assignable.
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role', 'department_id'
+        'name', 'email', 'password', 'role', 'department_id', 'created_by', 'updated_by', 'deleted_at'
     ];
 
     /**
@@ -42,7 +53,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'created_at', 'deleted_at'
+        'password', 'created_at', 'deleted_at', 'updated_at'
     ];
 
     /**
