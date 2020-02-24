@@ -78,4 +78,41 @@ class BaseMutator
         return $this->update($modelId, ['deleted_at' => Carbon::now()->format(self::TIMESTAMP_FORMAT),
             'updated_by' => $deletedBy], $otherColumn);
     }
+
+    /**
+     * Searches the specified model with the given key by using whereIn, with the args that were provided.
+     * If the value in $column is null the default discriminator is used.
+     * @param $columnInFields array The array to perform IN query with
+     * @param $args array The array of arguments to update data with.
+     * @param $column string The name of the column to use in the IN query
+     * @return integer The number of rows updated
+     * @throws  \ErrorException If data is invalid
+     * @throws \Throwable
+     */
+    public function updateBulk($columnInFields, $args, $column=null)
+    {
+        $validArgs = ArrayHelper::mergePrimaryKeysAndValues($this->fullyQualifiedModel::UPDATE_VALIDATION_RULES, $args);
+        if (array_key_exists('updated_by', $validArgs)) {
+            $optionalValidationKeys = ArrayHelper::mergePrimaryKeysAndValues($validArgs, $this->fullyQualifiedModel::UPDATE_VALIDATION_RULES);
+            $validator = Validator::make($validArgs, $optionalValidationKeys);
+            throw_if($validator->fails(), \ErrorException::class, json_encode($validator->errors()->getMessages()));
+            $column = $column == null? $this->column: $column;
+            return $this->fullyQualifiedModel->whereIn($column, $columnInFields)->update($args);
+        }
+    }
+
+    /**
+     * Mass deletes the current model with the given modelIds. If otherColumn is null the default discriminator is used.
+     * @param $modelIds
+     * @param $deletedBy
+     * @param null $otherColumn
+     * @return int
+     * @throws \ErrorException
+     * @throws \Throwable
+     */
+    public function bulkDelete($modelIds, $deletedBy, $otherColumn=null){
+        return $this->updateBulk($otherColumn == null? $this->column: $otherColumn, $modelIds, ['deleted_at' => Carbon::now()->format(self::TIMESTAMP_FORMAT),
+            'updated_by' => $deletedBy]);
+    }
+
 }
