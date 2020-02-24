@@ -4,7 +4,7 @@
 namespace App\Http\Middleware;
 
 
-use App\Transactors\TokenService;
+use App\Services\TokenService;
 use Closure;
 use Illuminate\Http\Request;
 
