@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
          * Queries
          */
         \App\Query\UserQuery::class => \App\Query\UserQuery::class,
-
+        \App\Query\TeacherLectureQuery::class=>\App\Query\TeacherLectureQuery::class,
         /**
          * Services
          */
@@ -40,12 +40,13 @@ class AppServiceProvider extends ServiceProvider
         /**
          * Mutators
          */
-
-
+        \App\Transactors\Mutations\AttendanceTokenMutator::class=>\App\Transactors\Mutations\AttendanceTokenMutator::class,
+        \App\Transactors\Mutations\TeacherLectureMutator::class=>\App\Transactors\Mutations\TeacherLectureMutator::class,
+        \App\Transactors\Mutations\ClassLectureMutator::class=>\App\Transactors\Mutations\ClassLectureMutator::class,
         /**
          * Transactors
          */
         \App\Transactors\AuthTransactor::class=> \App\Transactors\AuthTransactor::class,
-
+        \App\Transactors\AttendanceTokenTransactor::class=>\App\Transactors\AttendanceTokenTransactor::class,
     ];
 }
