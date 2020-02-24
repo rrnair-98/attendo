@@ -21,7 +21,7 @@ class AuthController extends Controller
             if (array_key_exists('email', $requestBody) && array_key_exists('password', $requestBody)) {
                 $email = $requestBody['email'];
                 $password = $requestBody['password'];
-                return $this->authTransactor->login($email, $password);
+                return response(['data'=>$this->authTransactor->login($email, $password), 'message'=>'success']);
             }
         }catch (\ErrorException|ModelNotFoundException $exception){
             return ResponseHelper::badRequest('Username password combo was wrong');
@@ -35,7 +35,7 @@ class AuthController extends Controller
     public function logout(Request $request){
         try {
             $this->authTransactor->logout($request->user());
-            return response('Successfully logged out');
+            return response(['message'=>'Successfully logged out']);
         }catch (\ErrorException|ModelNotFoundException $exception){
             return ResponseHelper::badRequest('User doesnt exist.');
         }catch (\Exception $exception){
@@ -45,8 +45,7 @@ class AuthController extends Controller
 
     public function refresh(string $refreshToken){
         try {
-            $this->authTransactor->refresh($refreshToken);
-            return response('Successfully logged out');
+            return response(['data'=>$this->authTransactor->refresh($refreshToken), 'message'=>'success']);
         }catch (\ErrorException|ModelNotFoundException $exception){
             return ResponseHelper::badRequest('User doesnt exist.');
         }catch (\Exception $exception){
