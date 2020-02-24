@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone', 10)->unique()->nullable();
             $table->string('password');
             $table->text('img_url')->nullable();
-            $table->json('description');
+            $table->json('description')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');

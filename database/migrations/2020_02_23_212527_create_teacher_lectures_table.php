@@ -18,7 +18,7 @@ class CreateTeacherLecturesTable extends Migration
             $table->unsignedBigInteger('user_id'); // id of teacher
             $table->unsignedBigInteger('lecture_id'); //id of the lecture
             $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

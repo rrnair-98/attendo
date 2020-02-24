@@ -22,7 +22,7 @@ class CreateTimetablesTable extends Migration
             $table->unsignedBigInteger('department_id');
             $table->timestamps();
             $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
         });
     }
 

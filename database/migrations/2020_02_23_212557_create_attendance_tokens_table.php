@@ -21,7 +21,7 @@ class CreateAttendanceTokensTable extends Migration
             $table->string('token', 255)->unique();// a unique token for this lecture
             $table->dateTime('expires_at');
             $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

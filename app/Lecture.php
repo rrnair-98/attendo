@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Lecture extends Model
 {
     //
+    public $timestamps = true;
 }

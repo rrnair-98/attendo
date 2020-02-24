@@ -19,7 +19,7 @@ class CreateClassLecturesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('teacher_lecture_id');// a teacher lecture id
             $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->longText('description')->nullable(); // a JSON col that could be used later to store what topics the teacher covered
             $table->timestamps();
         });

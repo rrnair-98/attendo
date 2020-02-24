@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             'created_by'=> 0
         ]);
         while(++$i <= 5) {
-            \Illuminate\Support\Facades\DB::table('users')->insert(
+            \App\User::create(
                 [
                     'email' => $faker->unique()->email,
                     'password' => $password,
@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
         }
         $i=-1;
         while(++$i < 60) {
-            \Illuminate\Support\Facades\DB::table('users')->insert(
+            \App\User::create(
                 [
                     'email' => $faker->unique()->email,
                     'password' => $password,
@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
                 ]
             );
         }
-        \Illuminate\Support\Facades\DB::table('users')->insert(
+        \App\User::create(
             [
                 'email' => $faker->unique()->email,
                 'password' => $password,

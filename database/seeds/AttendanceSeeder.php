@@ -25,7 +25,7 @@ class AttendanceSeeder extends Seeder
                     'student_id' => $studentId,
                     'student_token' =>$token,
                     'created_by_id' => 0,
-                    'created_at' => \Carbon\Carbon::     now()
+                    'created_at' => \Carbon\Carbon::now()
                 ]
             );
             \Illuminate\Support\Facades\DB::table('attendance_tokens')->insert(

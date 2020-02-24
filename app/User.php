@@ -17,6 +17,7 @@ class User extends Authenticatable
     const ROLE_HOD = 65536;
     const ROLE_ADMIN = 2147483647;
 
+    public $timestamps = true;
 
     public const CREATE_VALIDATION_RULES = array(
         'role' => 'in:0,8,65536,2147483647',
