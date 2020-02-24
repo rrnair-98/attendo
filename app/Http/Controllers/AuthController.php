@@ -45,4 +45,15 @@ class AuthController extends Controller
         }
     }
 
+    public function refresh($refreshToken){
+        try {
+            $this->authTransactor->refresh($refreshToken);
+            return response('Successfully logged out');
+        }catch (\ErrorException|ModelNotFoundException $exception){
+            return ResponseHelper::badRequest('User doesnt exist.');
+        }catch (\Exception $exception){
+            return ResponseHelper::internalError($exception->getCode());
+        }
+    }
+
 }
