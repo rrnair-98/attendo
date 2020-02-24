@@ -97,6 +97,7 @@ class BaseMutator
             $validator = Validator::make($validArgs, $optionalValidationKeys);
             throw_if($validator->fails(), \ErrorException::class, json_encode($validator->errors()->getMessages()));
             $column = $column == null? $this->column: $column;
+            $args['updated_at'] = Carbon::now()->format(self::TIMESTAMP_FORMAT);
             return $this->fullyQualifiedModel->whereIn($column, $columnInFields)->update($args);
         }
     }
