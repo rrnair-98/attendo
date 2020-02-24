@@ -21,11 +21,18 @@ class AuthTransactor extends BaseTransactor
         $this->tokenService = $tokenService;
     }
 
+    /**
+     * Creates tokens for the user with the given combo
+     * @param string $email
+     * @param string $password
+     * @return \App\Token
+     * @throws \ErrorException
+     */
     public function login(string $email, string $password){
         try{
             DB::beginTransaction();
 
-            $user =$this->userQuery->getUserByEmailAndPassword($email, $password)
+            $user =$this->userQuery->getUserByEmailAndPassword($email, $password);
             $token = $this->tokenService->createOrRefresh($user);
             DB::commit();
             return $token;
@@ -40,6 +47,11 @@ class AuthTransactor extends BaseTransactor
         }
     }
 
+    /**
+     * Deletes a token instance
+     * @param User $user
+     * @throws \ErrorException
+     */
     public function logout(User $user){
         try{
             DB::beginTransaction();
@@ -57,6 +69,12 @@ class AuthTransactor extends BaseTransactor
     }
 
 
+    /**
+     * Refreshes the token given the access token.
+     * @param string $refreshToken
+     * @return \App\Token
+     * @throws \ErrorException
+     */
     public function refresh(string $refreshToken){
         try{
             DB::beginTransaction();
@@ -76,7 +94,7 @@ class AuthTransactor extends BaseTransactor
         }
     }
 
-    public function general(){
+    /*public function general(){
         try{
             DB::beginTransaction();
 
@@ -91,7 +109,7 @@ class AuthTransactor extends BaseTransactor
                 $exception->getMessage(), 'trace'=>$exception->getTrace()]);
             throw $exception;
         }
-    }
+    }*/
 
 
 
