@@ -95,7 +95,7 @@ class TokenService
      */
     public function getTokenByRefreshToken($refreshToken)
     {
-        $token = Token::where("refresh_token", $refreshToken)->where("refresh_token_expiry", ">", Utils::getSystemTimeInMillis())->first();
+        $token = Token::where("refresh_token", $refreshToken)->where("refresh_token_expiry", ">", Utils::getSystemTimeInMillis())->firstOrFail();
         return $token;
     }
 
