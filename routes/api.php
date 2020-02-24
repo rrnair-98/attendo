@@ -13,18 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 Route::get('hello/', function(Request $request){
     return json_encode(['message' =>'hello'] );
 });
 Route::post('login', "AuthController@login");
-Route::post('refresh', 'AuthController@refresh');
+Route::post('refresh/{refreshToken}', 'AuthController@refresh');
 Route::middleware('token')->group(function (){
     Route::delete('logout', 'AuthController@logout');
+    Route::get('user/', function (Request $request){
+        return $request->user();
+    });
 });
-
 
 Route::post('attendanceToken/create', 'AttendanceTokenController@postCreateAttendanceToken')->middleware('token', 'student');
 
