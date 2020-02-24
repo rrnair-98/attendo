@@ -1,5 +1,5 @@
 <?php
-namespace App\Transactors;
+namespace App\Services;
 
 
 use App\Helpers\Utils;
@@ -12,11 +12,11 @@ class TokenService
     /**
      * @var int This value is to be added to refresh token expiry
      */
-    private static $REFRESH_EXPIRY_TIME_IN_MILLIS = 6048000000000;
+    private static $REFRESH_EXPIRY_TIME_IN_MILLIS = 6048000000;
     /**
      * @var int This value is to be added to access token expiry
      */
-    private static $ACCESS_TOKEN_EXPIRY_TIME_IN_MILLIS = 120000000000;
+    private static $ACCESS_TOKEN_EXPIRY_TIME_IN_MILLIS = 12000000;
 
 
     /**
