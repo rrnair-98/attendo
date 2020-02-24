@@ -57,6 +57,24 @@ class AuthTransactor extends BaseTransactor
     }
 
 
+    public function refresh(string $refreshToken){
+        try{
+            DB::beginTransaction();
+
+            $token = $this->tokenService->getTokenByRefreshToken($refreshToken);
+            $token = $this->tokenService->refresh($token);
+            DB::commit();
+            return $token;
+        } catch (ModelNotFoundException|\ErrorException $exception){
+            DB::rollBack();
+            throw $exception;
+        } catch (\Exception $exception){
+            DB::rollBack();
+            Log::error('Exception in '.self::CLASS_NAME.'@'.self::METHOD_CREATE, ['message'=>
+                $exception->getMessage(), 'trace'=>$exception->getTrace()]);
+            throw $exception;
+        }
+    }
 
     public function general(){
         try{
