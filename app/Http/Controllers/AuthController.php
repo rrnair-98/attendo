@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ResponseHelper;
-use App\Query\UserQuery;
-use App\Services\TokenService;
-use App\Services\UserService;
 use App\Transactors\AuthTransactor;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -31,6 +28,7 @@ class AuthController extends Controller
         }catch (\Exception $exception){
             return ResponseHelper::internalError($exception->getCode());
         }
+        return ResponseHelper::badRequest('Bad request format');
 
     }
 
@@ -45,7 +43,7 @@ class AuthController extends Controller
         }
     }
 
-    public function refresh($refreshToken){
+    public function refresh(string $refreshToken){
         try {
             $this->authTransactor->refresh($refreshToken);
             return response('Successfully logged out');
