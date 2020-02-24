@@ -19,7 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('hello/', function(Request $request){
     return json_encode(['message' =>'hello'] );
 });
-Route::post('login', "\App\Http\Controllers\LoginController@postLogin");
+Route::post('login', "AuthController@login");
+Route::post('refresh', 'AuthController@refresh');
+Route::middleware('token')->group(function (){
+    Route::delete('logout', 'AuthController@logout');
+});
+
 
 Route::post('attendanceToken/create', 'AttendanceTokenController@postCreateAttendanceToken')->middleware('token', 'student');
 
@@ -35,3 +40,4 @@ Route::get('attendance/lecture/{start}/{end}/{lectureId}/', 'AttendanceControlle
 Route::get('attendance/student-and-lecture/{start}/{end}/{studentId}/{lectureId}/', 'AttendanceController@getByStudentAndLectureId');
 Route::post('attendance/{teacherId}/{lectureId}/', 'AttendanceController@postBulkInsertAttendance')->middleware('token', 'teacher');
 Route::resource('attendance', 'AttendanceController');
+
