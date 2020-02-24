@@ -25,4 +25,27 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    protected $singleton = [
+        /**
+         * Queries
+         */
+        \App\Query\UserQuery::class => \App\Query\UserQuery::class,
+
+        /**
+         * Services
+         */
+        \App\Services\TokenService::class=>\App\Services\TokenService::class,
+
+        /**
+         * Mutators
+         */
+
+
+        /**
+         * Transactors
+         */
+        \App\Transactors\AuthTransactor::class=> \App\Transactors\AuthTransactor::class,
+
+    ];
 }
