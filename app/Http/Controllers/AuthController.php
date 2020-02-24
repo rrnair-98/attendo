@@ -10,12 +10,10 @@ use App\Transactors\AuthTransactor;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     //
     private $authTransactor;
-    private $tokenService;
-
     public function __construct(AuthTransactor $authTransactor){
         $this->authTransactor = $authTransactor;
     }
@@ -37,7 +35,14 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request){
-
+        try {
+            $this->authTransactor->logout($request->user());
+            return response('Successfully logged out');
+        }catch (\ErrorException|ModelNotFoundException $exception){
+            return ResponseHelper::badRequest('User doesnt exist.');
+        }catch (\Exception $exception){
+            return ResponseHelper::internalError($exception->getCode());
+        }
     }
 
 }
