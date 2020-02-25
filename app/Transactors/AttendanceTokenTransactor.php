@@ -4,20 +4,40 @@
 namespace App\Transactors;
 
 use App\AttendanceToken;
+use App\Query\AttendanceTokenQuery;
+use App\Query\TeacherLectureQuery;
 use App\Transactors\Mutations\AttendanceTokenMutator;
+use App\Transactors\Mutations\ClassLectureMutator;
+use App\Transactors\Mutations\TeacherLectureMutator;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Uses the following mutators
+ * 1. AttendanceMutator - To create attendance tokens, and to update the is_present flag when attendance is submitted
+ * 2. ClassLectureMutator - To create class lectures when attendances are submitted
+ * and the following queries
+ * 1. AttendanceTokenQuery - To fetch a non expired token, To fetch a list of tokens of the student that have subscribed
+ * to this class.
+ * Class AttendanceTokenTransactor
+ *
+ * @package App\Transactors
+ */
 class AttendanceTokenTransactor extends BaseTransactor
 {
     private const CLASS_NAME = 'AttendanceTokenTransactor';
     private $attendanceMutator;
-    public function __construct(AttendanceTokenMutator $mutator)
+    private $attendanceTokenQuery;
+    private $classLectureMutator;
+    public function __construct(AttendanceTokenMutator $mutator, AttendanceTokenQuery $attendanceTokenQuery,
+                    ClassLectureMutator $classLectureMutator)
     {
         $this->attendanceMutator = $mutator;
+        $this->attendanceTokenQuery = $attendanceTokenQuery;
+        $this->classLectureMutator = $classLectureMutator;
     }
 
     /**
@@ -29,16 +49,19 @@ class AttendanceTokenTransactor extends BaseTransactor
      */
     public function create(User $user){
         try{
-            DB::beginTransaction();
-            $attendanceToken = $this->attendanceMutator->create(
-                [
-                    'created_by' => $user->id,
-                    'expires_at' => Carbon::now()->addMinutes(AttendanceToken::MAX_EXPIRY_IN_MINUTES),
-                    'token' => $this->attendanceMutator->generateToken($user)
-                ]
-            );
-            DB::commit();
-            return $attendanceToken;
+            $existingAttendanceToken = $this->attendanceTokenQuery->getNonExpiredAttendanceTokenForStudent($user->id);
+            if($existingAttendanceToken == null){
+                DB::beginTransaction();
+                $existingAttendanceToken = $this->attendanceMutator->create(
+                    [
+                        'created_by' => $user->id,
+                        'expires_at' => Carbon::now()->addMinutes(AttendanceToken::MAX_EXPIRY_IN_MINUTES),
+                        'token' => $this->attendanceMutator->generateToken($user)
+                    ]
+                );
+                DB::commit();
+            }
+            return $existingAttendanceToken;
         } catch (ModelNotFoundException|\ErrorException $exception){
             DB::rollBack();
             throw $exception;
@@ -52,27 +75,25 @@ class AttendanceTokenTransactor extends BaseTransactor
 
     /**
      * Sets the is_present for each student token given.
-     * @param $teacherId
-     * @param $classLectureId
+     * @param $createdByUserId ID This is equivalent to the teacher who initiated this call
+     * @param $teacherLectureId ID Id of the lecture
      * @param array $attendanceTokens
-     * @throws \ErrorException
-     * @throws \Throwable
      * @return bool true if all were set, false if otherwise.
+     *@throws \Throwable
+     * @throws \ErrorException
      */
     public function markStudentsPresent($createdByUserId, $teacherLectureId, array $attendanceTokens){
         try{
+            $length = count($attendanceTokens);
             DB::beginTransaction();
-            // could call bulk update...
-
-            $updateCount = 0;
-            $length = 0;
-            foreach ($attendanceTokens as $token){
-                $arr=['class_lecture_id' => $classLectureId, 'updated_by'=>$teacherId, 'is_present'=>1];
-                $updateCount+=$this->attendanceMutator->update($token, $arr, 'token');
-                ++$length;
-            }
+            $attendanceTokens = $this->attendanceTokenQuery
+                ->getValidAttendanceTokensFromList($attendanceTokens, $teacherLectureId);
+            $teacherLecture = $this->classLectureMutator->create(['created_by'=>$createdByUserId,
+                'teacher_lecture_id'=>$teacherLectureId]);
+            $numRowsUpdated = $this->attendanceMutator->updateBulk($attendanceTokens, ['is_present'=>1,
+                'class_lecture_id'=>$teacherLecture->id, 'updated_by'=>$createdByUserId], 'token');
             DB::commit();
-            return $updateCount == $length;
+            return $numRowsUpdated == $length;
         } catch (ModelNotFoundException|\ErrorException $exception){
             DB::rollBack();
             throw $exception;
@@ -82,7 +103,5 @@ class AttendanceTokenTransactor extends BaseTransactor
                 $exception->getMessage(), 'trace'=>$exception->getTrace()]);
             throw $exception;
         }
-
     }
-
 }
