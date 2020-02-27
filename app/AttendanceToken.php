@@ -26,5 +26,6 @@ class AttendanceToken extends Model
         'updated_by'    => 'exists:users,id',
         'deleted_at'    => 'date_format:Y-m-d H:i:s',
     );
+    protected $hidden = ['created_at', 'updated_at', 'created_by', 'updated_by', 'deleted_at', 'is_present'];
 
 }
