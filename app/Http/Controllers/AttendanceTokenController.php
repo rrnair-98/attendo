@@ -17,7 +17,7 @@ class AttendanceTokenController extends Controller
 
     public function createAttendanceToken(Request $request){
         try {
-            return response($this->attendanceTokenTransactor->create($request->user->id));
+            return response($this->attendanceTokenTransactor->create($request->user));
         }catch (\Exception $exception){
             return ResponseHelper::internalError($exception->getMessage());
         }
