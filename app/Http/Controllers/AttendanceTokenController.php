@@ -25,10 +25,11 @@ class AttendanceTokenController extends Controller
 
     public function markStudentsPresent($teacherLectureId, Request $request){
         $requestBody = $request->all();
-        if(array_key_exists("tokens") && is_array($requestBody['tokens'])) {
+        if(array_key_exists("tokens", $requestBody) && is_array($requestBody['tokens'])) {
             try {
+                $tokens = $requestBody['tokens'];
                 return response($this->attendanceTokenTransactor->markStudentsPresent($request->user->id, $teacherLectureId,
-                $requestBody['tokens']));
+                $tokens));
             } catch (\Exception $e) {
                 return ResponseHelper::internalError($e->getMessage());
             }
