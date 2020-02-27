@@ -16,7 +16,7 @@ class AttendanceTokenSeeder extends Seeder
             foreach (\App\StudentLecture::where('teacher_lecture_id', $teacherLecture->id)->get() as $subbedStudent){
                 \App\AttendanceToken::create([
                     'token' => hash('sha256', \Carbon\Carbon::now()->timestamp.$subbedStudent->user_id.$subbedStudent->id),
-                    'expires_at'    => \Carbon\Carbon::now()->addMinutes(\App\AttendanceToken::MAX_EXPIRY_IN_MINUTES),
+                    'expires_at'    => \Carbon\Carbon::now()->addHours(\App\AttendanceToken::MAX_EXPIRY_IN_MINUTES),
                     'created_by'    => $subbedStudent->user_id,
                 ]);
             }
