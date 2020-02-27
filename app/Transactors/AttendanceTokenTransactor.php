@@ -49,9 +49,12 @@ class AttendanceTokenTransactor extends BaseTransactor
      */
     public function create(User $user){
         try{
+
+            //fetching valid token for student
             $existingAttendanceToken = $this->attendanceTokenQuery->getNonExpiredAttendanceTokenForStudent($user->id);
             if($existingAttendanceToken == null){
                 DB::beginTransaction();
+                // creating a new token
                 $existingAttendanceToken = $this->attendanceMutator->create(
                     [
                         'created_by' => $user->id,
