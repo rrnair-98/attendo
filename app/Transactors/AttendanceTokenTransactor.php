@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Log;
  */
 class AttendanceTokenTransactor extends BaseTransactor
 {
-    private const CLASS_NAME = 'AttendanceTokenTransactor';
+    protected const CLASS_NAME = 'AttendanceTokenTransactor';
     private $attendanceMutator;
     private $attendanceTokenQuery;
     private $classLectureMutator;
@@ -81,7 +81,7 @@ class AttendanceTokenTransactor extends BaseTransactor
      * @param $createdByUserId ID This is equivalent to the teacher who initiated this call
      * @param $teacherLectureId ID Id of the lecture
      * @param array $attendanceTokens
-     * @return bool true if all were set, false if otherwise.
+     * @return integer Number of rows updated.
      *@throws \Throwable
      * @throws \ErrorException
      */
@@ -89,14 +89,20 @@ class AttendanceTokenTransactor extends BaseTransactor
         try{
             $length = count($attendanceTokens);
             DB::beginTransaction();
-            $attendanceTokens = $this->attendanceTokenQuery
-                ->getValidAttendanceTokensFromList($attendanceTokens, $teacherLectureId);
+            $attendanceTokens =
+                $this->attendanceTokenQuery
+                    ->getValidAttendanceTokensFromList($attendanceTokens, $teacherLectureId)
+                    ->map(function($x){return $x['token'];})->toArray();
             $teacherLecture = $this->classLectureMutator->create(['created_by'=>$createdByUserId,
                 'teacher_lecture_id'=>$teacherLectureId]);
-            $numRowsUpdated = $this->attendanceMutator->updateBulk($attendanceTokens, ['is_present'=>1,
-                'class_lecture_id'=>$teacherLecture->id, 'updated_by'=>$createdByUserId], 'token');
+            $numRowsUpdated = 0;
+            if(count($attendanceTokens) >0) {
+                $numRowsUpdated = $this->attendanceMutator->updateBulk($attendanceTokens, ['is_present' => 1,
+                    'class_lecture_id' => $teacherLecture->id, 'updated_by' => $createdByUserId ,
+                    'expires_at'=>Carbon::now()->format('Y-m-d H:i:s')], 'token');
+            }
             DB::commit();
-            return $numRowsUpdated == $length;
+            return $numRowsUpdated;
         } catch (ModelNotFoundException|\ErrorException $exception){
             DB::rollBack();
             throw $exception;

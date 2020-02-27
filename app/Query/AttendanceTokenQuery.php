@@ -6,6 +6,8 @@ namespace App\Query;
 
 use App\AttendanceToken;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceTokenQuery
 {
@@ -17,8 +19,10 @@ class AttendanceTokenQuery
      */
     public function getValidAttendanceTokensFromList(array $tokens, $teacherLectureId){
         return AttendanceToken::whereIn('token', $tokens)
-            ->join("(select user_id from student_lectures where teacher_lecture_id=$teacherLectureId)
-            as student_lectures ", 'student_lectures.user_id', '=', 'attendance_tokens.created_by')
+            ->join(DB::raw("(select user_id from student_lectures where teacher_lecture_id=$teacherLectureId) as student_lectures "),
+            function ($join){
+                $join->on('student_lectures.user_id', '=', 'attendance_tokens.created_by');
+            })
             ->select('attendance_tokens.token as token')
             ->get();
     }
@@ -32,5 +36,18 @@ class AttendanceTokenQuery
         return AttendanceToken::where('created_by', $studentId)
             ->where('expires_at', '>=', Carbon::now())
             ->first();
+    }
+
+    /**
+     * Fetches the name, email, img_url and id of the user bound to this token
+     * @param string $attendanceToken
+     * @return mixed
+     * @throws ModelNotFoundException if no such token exists.
+     */
+    public function getUserFromToken(string $attendanceToken){
+        return AttendanceToken::join('users', 'users.id', '=', 'attendance_tokens.created_by')
+        ->where('token', $attendanceToken)
+        ->select('users.id','users.name', 'users.email', 'users.img_url')
+        ->firstOrFail();
     }
 }
