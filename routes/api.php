@@ -32,7 +32,7 @@ Route::middleware('token')->group(function (){
 //    Route::get('student/attendance/', 'AttendanceToken@getAttendanceForStudent');
 
     // todo wrap in teacher, hod middleware
-    Route::post('attendance/{teacherLectureId}', 'AttendanceTokenControl@markStudnetsPresent');
+    Route::post('attendance/{teacherLectureId}', 'AttendanceTokenControl@markStudentsPresent');
   /*  Route::get('attendance/class-lecture/{classLectureId}', 'AttendanceToken@getAllStudentAttendanceForClassLectureId');
     Route::get('attendance/teacher-lecture/{teacherLectureId}', 'AttendanceToken@getAllStudentAttendanceForTeacherLectureId');*/
 
