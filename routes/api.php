@@ -26,9 +26,17 @@ Route::middleware('token')->group(function (){
     Route::get('user/', function (Request $request){
         return $request->user();
     });
-});
 
-Route::post('attendanceToken/create', 'AttendanceTokenController@postCreateAttendanceToken')->middleware('token', 'student');
+    // todo wrap this in student middleware
+    Route::post('student/attendance/token', 'AttendanceTokenController@createAttendanceToken');
+//    Route::get('student/attendance/', 'AttendanceToken@getAttendanceForStudent');
+
+    // todo wrap in teacher, hod middleware
+    Route::post('attendance/{teacherLectureId}', 'AttendanceTokenControl@markStudnetsPresent');
+  /*  Route::get('attendance/class-lecture/{classLectureId}', 'AttendanceToken@getAllStudentAttendanceForClassLectureId');
+    Route::get('attendance/teacher-lecture/{teacherLectureId}', 'AttendanceToken@getAllStudentAttendanceForTeacherLectureId');*/
+
+});
 
 Route::get('lectures/department/{departmentId}', 'LectureController@getByDepartment');
 Route::get('lectures/teacher/{teacherId}', 'LectureController@getByTeacher');
