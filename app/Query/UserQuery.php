@@ -19,12 +19,12 @@ class UserQuery
     }
     /**
      * Searches a user with the given email, password combo
-     * @param $email Email of the user
-     * @param $password Password of the user
+     * @param $email string Email of the user
+     * @param $password string Password of the user
      * @return User|null
      */
     public function getUserByEmailAndPassword($email, $password) {
-        return User::where('email', $email)->where('password', hash("sha256",$password))->first();
+        return User::where('email', $email)->where('password', hash("sha256",$password))->firstOrFail();
     }
 
     /**
