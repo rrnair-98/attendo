@@ -16,11 +16,11 @@ class CreateAttendanceTokensTable extends Migration
         Schema::create('attendance_tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->tinyInteger('is_present')->default(0); // set by the teacher when he she posts attendance tokens.
-            $table->unsignedBigInteger('class_lecture_id'); // set by the teacher who posts tokens.
+            $table->unsignedBigInteger('class_lecture_id')->index(); // set by the teacher who posts tokens.
             $table->string('token', 255)->unique();// a unique token for this lecture
             $table->dateTime('expires_at');
-            $table->unsignedBigInteger('created_by'); // id of the student
-            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('created_by')->index(); // id of the student
+            $table->unsignedBigInteger('updated_by')->nullable()->index();
             $table->softDeletes();
             $table->timestamps();
         });
