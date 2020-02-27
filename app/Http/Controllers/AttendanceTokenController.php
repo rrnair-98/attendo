@@ -2,20 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\AttendanceTokenService;
+use App\Helpers\ResponseHelper;
+use App\Transactors\AttendanceTokenTransactor;
 use Illuminate\Http\Request;
 
 class AttendanceTokenController extends Controller
 {
     //
-    private $attendanceTokenService;
-    public function __construct(AttendanceTokenService $attendanceTokenService)
+    private $attendanceTokenTransactor;
+    public function __construct(AttendanceTokenTransactor $attendanceTokenService)
     {
-        $this->attendanceTokenService = $attendanceTokenService;
+        $this->attendanceTokenTransactor = $attendanceTokenService;
     }
 
-    public function postCreateAttendanceToken(Request $request){
-        return response($this->attendanceTokenService->createToken($request->user->id, $request->user->email));
+    public function createAttendanceToken(Request $request){
+        try {
+            return response($this->attendanceTokenTransactor->create($request->user->id));
+        }catch (\Exception $exception){
+            return ResponseHelper::internalError($exception->getMessage());
+        }
+    }
+
+    public function markStudentsPresent($teacherLectureId, Request $request){
+        $requestBody = $request->all();
+        if(array_key_exists("tokens") && is_array($requestBody['tokens'])) {
+            try {
+                return response($this->attendanceTokenTransactor->markStudentsPresent($request->user->id, $teacherLectureId,
+                $requestBody['tokens']));
+            } catch (\Exception $e) {
+                return ResponseHelper::internalError($e->getMessage());
+            }
+        }
+        return ResponseHelper::badRequest("Expected tokens to be present");
     }
 
 }
