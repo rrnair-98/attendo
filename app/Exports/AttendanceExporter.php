@@ -19,19 +19,20 @@ class AttendanceExporter implements FromCollection, WithHeadings
 
     private $teacherLectureIds;
 
-    public function setTeacherLectureIds(array $teacherLectureIds){
+    public function withTeacherLectureIds(array $teacherLectureIds){
         $this->teacherLectureIds = $teacherLectureIds;
+        return $this;
     }
 
     public function headings(): array
     {
-        return [];
+        return ["Roll Number", "Name", "Percentage"];
     }
 
-
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     * @throws \ErrorException
+     */
     public function collection()
     {
         if($this->teacherLectureIds == null || count($this->teacherLectureIds)== 0)

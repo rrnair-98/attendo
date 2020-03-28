@@ -22,7 +22,7 @@ in
 and attendance_tokens.is_present and attendance_tokens.created_at between %s and %s
 group by attendance_tokens.created_by) att
 right join
-(select users.id, users.email, users.img_url from users where users.role = 0) students on
+(select users.roll_number, users.name from users where users.role = 0) students on
 students.id = att.created_by
 TAG;
 

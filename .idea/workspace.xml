@@ -4,8 +4,7 @@
     <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +247,7 @@
       <workItem from="1583664575578" duration="4112000" />
       <workItem from="1583760578729" duration="650000" />
       <workItem from="1583777144642" duration="2344000" />
-      <workItem from="1585396471952" duration="560000" />
+      <workItem from="1585396471952" duration="774000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1585396635710</created>
@@ -257,7 +256,21 @@
       <option name="project" value="LOCAL" />
       <updated>1585396635710</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="adding roll numbers">
+      <created>1585397062382</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585397062382</updated>
+    </task>
+    <task id="LOCAL-00003" summary="adding idea to gitignore">
+      <created>1585397088462</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585397088463</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +279,9 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="adding roll numbers" />
+    <MESSAGE value="adding idea to gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding idea to gitignore" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="675" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579607111829">
@@ -290,10 +305,10 @@
     <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582798090013" />
     <state x="693" y="267" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582525386969" />
     <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482668681" />
-    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2" timestamp="1585397062214">
+    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2" timestamp="1585397088297">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397062214" />
+    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397088297" />
     <state x="743" y="267" width="424" height="482" key="FileChooserDialogImpl" timestamp="1582797939834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
