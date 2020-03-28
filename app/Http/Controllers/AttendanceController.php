@@ -33,6 +33,7 @@ class AttendanceController extends Controller
 
     public function postBulkInsertAttendance(Request $request, int $teacherId, int $lectureId){
         if(count($request->json()->all())){
+
             $requestBody = $request->json()->all();
             $studentTokens = $requestBody["tokens"];
             error_log(count($studentTokens));

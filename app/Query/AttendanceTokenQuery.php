@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class AttendanceTokenQuery
 {
-
     public const OPTIMIZED_FETCH_STUDENT_ATT_FOR_TEACHER_LECTURE_ID=<<<TAG
 select students.*, att.num from
 (select attendance_tokens.created_by, (count(id)/%s) num from attendance_tokens
 where attendance_tokens.class_lecture_id
 in
-    (select class_lectures.id from class_lectures where class_lectures.teacher_lecture_id = %s)
+    (select class_lectures.id from class_lectures where class_lectures.teacher_lecture_id in (%s))
 and attendance_tokens.is_present and attendance_tokens.created_at between %s and %s
 group by attendance_tokens.created_by) att
 right join
@@ -80,7 +79,6 @@ TAG;
             ->get();
     }
 
-
     public function getStudentAttendanceByTeacherLectureId($teacherLectureId, $fromDate=null, $toDate=null){
         if($fromDate == null)
             $fromDate = Carbon::now()->firstOfYear();
@@ -96,7 +94,6 @@ TAG;
             return DB::select($query);
         }
         throw new ModelNotFoundException();
-
     }
 
 }

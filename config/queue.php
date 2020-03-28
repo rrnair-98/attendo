@@ -71,7 +71,7 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Failed Queue Jobs
-    |--------------------------------------------------------------------------
+    |-------------------------------------------------------------z-------------
     |
     | These options configure the behavior of failed queue job logging so you
     | can control which database and table are used to store the jobs that
