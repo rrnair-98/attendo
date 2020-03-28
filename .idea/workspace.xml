@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/attendo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/attendo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendanceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendanceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Query/ClassLectureAttendanceQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/ClassLectureAttendanceQuery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queue.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/queue.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +186,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@d87a704" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -244,7 +248,16 @@
       <workItem from="1583664575578" duration="4112000" />
       <workItem from="1583760578729" duration="650000" />
       <workItem from="1583777144642" duration="2344000" />
+      <workItem from="1585396471952" duration="560000" />
     </task>
+    <task id="LOCAL-00001" summary="wip">
+      <created>1585396635710</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585396635710</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +265,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="675" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579607111829">
@@ -275,6 +290,10 @@
     <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582798090013" />
     <state x="693" y="267" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582525386969" />
     <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482668681" />
+    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2" timestamp="1585396635293">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585396635293" />
     <state x="743" y="267" width="424" height="482" key="FileChooserDialogImpl" timestamp="1582797939834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -333,9 +352,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582691915962" />
-    <state x="623" y="220" width="672" height="653" key="search.everywhere.popup" timestamp="1583679590882">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup" timestamp="1585396994761">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
+    <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585396994761" />
     <state x="623" y="220" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583679590882" />
     <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582542448897" />
     <state x="623" y="1308" width="672" height="679" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1080@0.1080.1920.1080" timestamp="1582483290972" />

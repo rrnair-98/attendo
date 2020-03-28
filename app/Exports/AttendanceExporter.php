@@ -12,18 +12,22 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class AttendanceExporter implements FromCollection
+class AttendanceExporter implements FromCollection, WithHeadings
 {
-    private $writerType = Excel::CSV;
-    private $headers = [
-        'Content-Type' => 'text/csv',
-    ];
+    use Exportable;
+    private $writerType = Excel::XLS;
 
     private $teacherLectureIds;
 
     public function setTeacherLectureIds(array $teacherLectureIds){
         $this->teacherLectureIds = $teacherLectureIds;
     }
+
+    public function headings(): array
+    {
+        return [];
+    }
+
 
     /**
     * @return \Illuminate\Support\Collection
@@ -33,7 +37,7 @@ class AttendanceExporter implements FromCollection
         if($this->teacherLectureIds == null || count($this->teacherLectureIds)== 0)
             throw new \ErrorException('illformated teacher lecture ids');
         $csvTeacherIds = implode(",", $this->teacherLectureIds);
-        $num = DB::raw();
-        $query = sprintf(AttendanceTokenQuery::OPTIMIZED_FETCH_STUDENT_ATT_FOR_TEACHER_LECTURE_ID, );
+        $query = sprintf(AttendanceTokenQuery::OPTIMIZED_FETCH_STUDENT_ATT_FOR_TEACHER_LECTURE_ID, $csvTeacherIds);
+        return collect(DB::select($query));
     }
 }

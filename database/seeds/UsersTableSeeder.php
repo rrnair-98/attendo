@@ -52,7 +52,8 @@ class UsersTableSeeder extends Seeder
                     'role' => \App\User::ROLE_STUDENT,
                     'name' => $faker->name,
                     'gender' => rand(1, 2),
-                    'created_by' => $og->id
+                    'created_by' => $og->id,
+                    'roll_number'=>$i
                 ]
             );
         }
