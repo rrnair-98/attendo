@@ -19,7 +19,7 @@ select students.*, att.num from
 where attendance_tokens.class_lecture_id
 in
     (select class_lectures.id from class_lectures where class_lectures.teacher_lecture_id in (%s))
-and attendance_tokens.is_present and attendance_tokens.created_at between %s and %s
+and attendance_tokens.is_present and attendance_tokens.created_at between %s and %s and deleted_at is null
 group by attendance_tokens.created_by) att
 right join
 (select users.roll_number, users.name from users where users.role = 0) students on
@@ -94,6 +94,15 @@ TAG;
             return DB::select($query);
         }
         throw new ModelNotFoundException();
+    }
+
+
+    public function getStudentAvgAttendance($studentId){
+        /*$result = array();
+        foreach (StudentLectureQuery::getTeacherLectureIdsForStudent($studentId) as $teacherLectureId){
+
+            array_push($result, )
+        }*/
     }
 
 }

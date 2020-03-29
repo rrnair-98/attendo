@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Query/StudentLectureQuery.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendanceTokenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendanceTokenController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/StudentLecture.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/StudentLecture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,11 +39,13 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="attendo" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="attendo" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
     </expand>
     <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="attendo" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -161,17 +169,18 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowFavorites.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/auth" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="$PROJECT_DIR$/resources/views/layouts" />
       <recent name="$PROJECT_DIR$/app/Helpers" />
       <recent name="$PROJECT_DIR$/app/Http/Middleware" />
       <recent name="$PROJECT_DIR$/database/migrations" />
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/Transactors/Mutations" />
     </key>
   </component>
   <component name="RunManager">
@@ -193,7 +202,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@d87a704" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@52282235" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -247,7 +256,8 @@
       <workItem from="1583664575578" duration="4112000" />
       <workItem from="1583760578729" duration="650000" />
       <workItem from="1583777144642" duration="2344000" />
-      <workItem from="1585396471952" duration="774000" />
+      <workItem from="1585396471952" duration="2952000" />
+      <workItem from="1585479320984" duration="3136000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1585396635710</created>
@@ -270,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585397088463</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix">
+      <created>1585397324305</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1585397324305</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +298,8 @@
     <MESSAGE value="wip" />
     <MESSAGE value="adding roll numbers" />
     <MESSAGE value="adding idea to gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding idea to gitignore" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="675" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579607111829">
@@ -305,10 +323,10 @@
     <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582798090013" />
     <state x="693" y="267" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582525386969" />
     <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482668681" />
-    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2" timestamp="1585397088297">
+    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2" timestamp="1585397324149">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397088297" />
+    <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397324149" />
     <state x="743" y="267" width="424" height="482" key="FileChooserDialogImpl" timestamp="1582797939834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -335,9 +353,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="218" height="483" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1582794402889" />
-    <state x="676" y="323" width="529" height="366" key="NewPhpClassDialog" timestamp="1582793024072">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2596" y="335" width="529" height="366" key="NewPhpClassDialog" timestamp="1585397654361">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
+    <state x="2596" y="335" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397654361" />
     <state x="676" y="323" width="641" height="366" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582793024072" />
     <state x="676" y="323" width="529" height="366" key="NewPhpClassDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582526740883" />
     <state x="2596" y="335" width="641" height="366" key="NewPhpClassDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577488323822" />
@@ -367,10 +386,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582691915962" />
-    <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup" timestamp="1585397065497">
+    <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup" timestamp="1585398023473">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397065497" />
+    <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585398023473" />
     <state x="623" y="220" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583679590882" />
     <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582542448897" />
     <state x="623" y="1308" width="672" height="679" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1080@0.1080.1920.1080" timestamp="1582483290972" />

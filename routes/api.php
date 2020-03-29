@@ -29,17 +29,13 @@ Route::middleware('token')->group(function (){
 
     // todo wrap this in student middleware
     Route::post('student/attendance/token', 'AttendanceTokenController@createAttendanceToken');
-//    Route::get('student/attendance/', 'AttendanceToken@getAttendanceForStudent');
-
+    Route::get('student/attendance/avg', 'AttendanceTokenController@');
     // todo wrap in teacher, hod middleware
     Route::post('attendance/{teacherLectureId}', 'AttendanceTokenController@markStudentsPresent');
   /*  Route::get('attendance/class-lecture/{classLectureId}', 'AttendanceToken@getAllStudentAttendanceForClassLectureId');
     Route::get('attendance/teacher-lecture/{teacherLectureId}', 'AttendanceToken@getAllStudentAttendanceForTeacherLectureId');*/
 
 });
-
-Route::get('lectures/department/{departmentId}', 'LectureController@getByDepartment');
-Route::get('lectures/teacher/{teacherId}', 'LectureController@getByTeacher');
 
 /**
  * TODO - APPLY middleware to these methods.

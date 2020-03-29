@@ -37,4 +37,9 @@ class AttendanceTokenController extends Controller
         return ResponseHelper::badRequest("Expected tokens to be present");
     }
 
+
+    public function getStudentAvgAttendance(Request $request){
+
+    }
+
 }
