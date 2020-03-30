@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LectureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LectureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Query/StudentLectureQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/StudentLectureQuery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Query/TeacherLectureQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/TeacherLectureQuery.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -254,7 +251,7 @@
       <workItem from="1583777144642" duration="2344000" />
       <workItem from="1585396471952" duration="2952000" />
       <workItem from="1585479320984" duration="10309000" />
-      <workItem from="1585567955417" duration="4381000" />
+      <workItem from="1585567955417" duration="5652000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1585396635710</created>
@@ -305,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585580095050</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="adding read lectures for student and teacher">
+      <created>1585581466437</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585581466437</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +324,8 @@
     <MESSAGE value="adding css" />
     <MESSAGE value="fix" />
     <MESSAGE value="removing message and date from auth controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing message and date from auth controller" />
+    <MESSAGE value="adding read lectures for student and teacher" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding read lectures for student and teacher" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="675" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579607111829">
@@ -344,10 +349,10 @@
     <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582798090013" />
     <state x="693" y="267" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582525386969" />
     <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482668681" />
-    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2" timestamp="1585580094769">
+    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2" timestamp="1585581466283">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585580094769" />
+    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585581466283" />
     <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397324149" />
     <state x="743" y="267" width="424" height="482" key="FileChooserDialogImpl" timestamp="1582797939834">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -414,10 +419,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582691915962" />
-    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup" timestamp="1585581329049">
+    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup" timestamp="1585581692260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585581329049" />
+    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585581692260" />
     <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585398023473" />
     <state x="623" y="220" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583679590882" />
     <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582542448897" />

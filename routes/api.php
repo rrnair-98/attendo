@@ -31,7 +31,6 @@ Route::middleware('token')->group(function (){
     Route::post('student/attendance/token', 'AttendanceTokenController@createAttendanceToken');
     Route::get('student/attendance/avg', 'AttendanceTokenController@');
     // todo wrap in teacher, hod middleware
-    Route::post('attendance/{teacherLectureId}', 'AttendanceTokenController@markStudentsPresent');
   /*  Route::get('attendance/class-lecture/{classLectureId}', 'AttendanceToken@getAllStudentAttendanceForClassLectureId');
     Route::get('attendance/teacher-lecture/{teacherLectureId}', 'AttendanceToken@getAllStudentAttendanceForTeacherLectureId');*/
 
@@ -42,6 +41,7 @@ Route::middleware('token')->group(function (){
 
     Route::middleware('teacher', function(){
         Route::get("teacher/lectures", "LectureController@getLecturesForTeacher");
+        Route::post('teacher/attendance/{teacherLectureId}', 'AttendanceTokenController@markStudentsPresent');
     });
 
 });
