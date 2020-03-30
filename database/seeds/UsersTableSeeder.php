@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         //
         $i=0;
         $faker = Faker\Factory::create();
-        $password = bcrypt("password");
+        $password = hash('sha256', "password");
         $og = \App\User::create([
             'email' => "anton@gmail.com",
             'password' => $password,

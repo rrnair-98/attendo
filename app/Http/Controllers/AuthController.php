@@ -21,7 +21,7 @@ class AuthController extends Controller
             if (array_key_exists('email', $requestBody) && array_key_exists('password', $requestBody)) {
                 $email = $requestBody['email'];
                 $password = $requestBody['password'];
-                return response(['data'=>$this->authTransactor->login($email, $password), 'message'=>'success']);
+                return response($this->authTransactor->login($email, $password));
             }
         }catch (\ErrorException|ModelNotFoundException $exception){
             return ResponseHelper::badRequest('Username password combo was wrong');
@@ -45,7 +45,7 @@ class AuthController extends Controller
 
     public function refresh(string $refreshToken){
         try {
-            return response(['data'=>$this->authTransactor->refresh($refreshToken), 'message'=>'success']);
+            return response($this->authTransactor->refresh($refreshToken));
         }catch (\ErrorException|ModelNotFoundException $exception){
             return ResponseHelper::badRequest('User doesnt exist.');
         }catch (\Exception $exception){
