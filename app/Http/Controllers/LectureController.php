@@ -19,7 +19,7 @@ class LectureController extends Controller
     }
 
     public function getLecturesForTeacher(Request $request){
-        return response($this->teacherLectureQuery->findByTeacherId($request->user->id));
+        return response($this->teacherLectureQuery->findAllByTeacherIdJoinedWithLectured($request->user->id));
     }
 
     public function getLecturesForStudent(Request $request){

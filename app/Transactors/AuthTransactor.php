@@ -35,6 +35,7 @@ class AuthTransactor extends BaseTransactor
             $user =$this->userQuery->getUserByEmailAndPassword($email, $password);
             $token = $this->tokenService->createOrRefresh($user);
             DB::commit();
+            $token["role"] = $user->role;
             return $token;
         } catch (ModelNotFoundException|\ErrorException $exception){
             DB::rollBack();
@@ -81,6 +82,7 @@ class AuthTransactor extends BaseTransactor
 
             $token = $this->tokenService->getTokenByRefreshToken($refreshToken);
             $token = $this->tokenService->refresh($token);
+            $token["role"] = $token->user->role;
             DB::commit();
             return $token;
         } catch (ModelNotFoundException|\ErrorException $exception){

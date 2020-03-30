@@ -19,7 +19,7 @@ class StudentLectureQuery
     public function getLecturesOnlyByStudentId($studentId){
         return StudentLecture::join("lectures", "lectures.id", "=", "student_lectures.lecture_id")
             ->where("student_lectures.user_id", $studentId)
-            ->select("lectures.*")
+            ->select("lectures.*", "student_lectures.id as actual_relation_id")
             ->get();
     }
 }
