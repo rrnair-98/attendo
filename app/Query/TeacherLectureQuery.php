@@ -33,8 +33,7 @@ class TeacherLectureQuery
             ->where('teacher_lectures.user_id', $teacherId)
             ->skip($offset)
             ->take($limit)
-            ->select('teacher_lectures.id as teacher_lecture_id', 'lectures.id as lecture_id',
-                'lectures.lecture_name as name')
+            ->select('lectures.*')
             ->get();
     }
 

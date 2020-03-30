@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Query\StudentLectureQuery;
+use App\Query\TeacherLectureQuery;
 use App\Services\LectureService;
 use Illuminate\Http\Request;
 
 class LectureController extends Controller
 {
     //
-    private $lectureService;
-    public function __construct(LectureService $lectureService)
+    private $studentLectureQuery;
+    private $teacherLectureQuery;
+    public function __construct(StudentLectureQuery $query, TeacherLectureQuery $teacherLectureQuery)
     {
-        $this->lectureService = $lectureService;
+        $this->studentLectureQuery = $query;
+        $this->teacherLectureQuery = $teacherLectureQuery;
     }
 
-    public function getByTeacher(int $teacherId){
-        return response($this->lectureService->findByTeacherId($teacherId));
+    public function getLecturesForTeacher(Request $request){
+        return response($this->teacherLectureQuery->findByTeacherId($request->user->id));
     }
 
-    public function getByDepartment(int $departmentId){
-        return response($this->lectureService->findAllByDepartment($departmentId));
+    public function getLecturesForStudent(Request $request){
+        return response($this->studentLectureQuery->getLecturesOnlyByStudentId($request->user->id));
     }
 
 }

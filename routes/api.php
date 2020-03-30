@@ -20,8 +20,8 @@ Route::get('hello/', function(Request $request){
     return json_encode(['message' =>'hello'] );
 });
 Route::post('login', "AuthController@login");
-Route::post('refresh/{refreshToken}', 'AuthController@refresh');
 Route::middleware('token')->group(function (){
+    Route::post('refresh/{refreshToken}', 'AuthController@refresh');
     Route::delete('logout', 'AuthController@logout');
     Route::get('user/', function (Request $request){
         return $request->user();
@@ -34,6 +34,15 @@ Route::middleware('token')->group(function (){
     Route::post('attendance/{teacherLectureId}', 'AttendanceTokenController@markStudentsPresent');
   /*  Route::get('attendance/class-lecture/{classLectureId}', 'AttendanceToken@getAllStudentAttendanceForClassLectureId');
     Route::get('attendance/teacher-lecture/{teacherLectureId}', 'AttendanceToken@getAllStudentAttendanceForTeacherLectureId');*/
+
+
+    Route::middleware("student", function(){
+        Route::get("student/lectures", "LectureController@getLecturesForStudent");
+    });
+
+    Route::middleware('teacher', function(){
+        Route::get("teacher/lectures", "LectureController@getLecturesForTeacher");
+    });
 
 });
 
