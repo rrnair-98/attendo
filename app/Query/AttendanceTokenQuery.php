@@ -6,6 +6,7 @@ namespace App\Query;
 
 use App\AttendanceToken;
 use App\ClassLecture;
+use App\StudentLecture;
 use App\TeacherLecture;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -14,16 +15,15 @@ use Illuminate\Support\Facades\DB;
 class AttendanceTokenQuery
 {
     public const OPTIMIZED_FETCH_STUDENT_ATT_FOR_TEACHER_LECTURE_ID=<<<TAG
-select students.*, att.num from
-(select attendance_tokens.created_by, (count(id)/%s) num from attendance_tokens
-where attendance_tokens.class_lecture_id
-in
-    (select class_lectures.id from class_lectures where class_lectures.teacher_lecture_id in (%s))
-and attendance_tokens.is_present and attendance_tokens.created_at between %s and %s and deleted_at is null
-group by attendance_tokens.created_by) att
-right join
-(select users.roll_number, users.name from users where users.role = 0) students on
-students.id = att.created_by
+
+select students.*, att.percentage, att.total_lectures, %s as teacher_lecture_id from
+    (select attendance_tokens.created_by, (count(id)/(select count(id) from class_lectures where teacher_lecture_id = %s)) percentage, (select count(id) from class_lectures where teacher_lecture_id = %s) as total_lectures from attendance_tokens
+     where attendance_tokens.class_lecture_id in(select class_lectures.id from class_lectures where class_lectures.teacher_lecture_id = %s)
+       and attendance_tokens.is_present and attendance_tokens.created_at between ('%s' and '%s') and deleted_at is null
+     group by attendance_tokens.created_by) att
+        right join
+    (select users.id,users.roll_number, users.name from users where users.role = 0) students on
+            students.id = att.created_by
 TAG;
 
     /**
@@ -85,24 +85,18 @@ TAG;
         if($toDate == null)
             $toDate = Carbon::now();
         $fromDate = Carbon::now()->lastOfMonth();
-
-        $numLectures = ClassLecture::where('teacher_lecture_id', $teacherLectureId)->select(DB::raw('count(id) as num'))->get();
-        if(count($numLectures)) {
-            $numLectures = $numLectures[0]['num'];
-            $query = sprintf(self::OPTIMIZED_FETCH_STUDENT_ATT_FOR_TEACHER_LECTURE_ID, $numLectures,
-            $teacherLectureId, $fromDate, $toDate);
-            return DB::select($query);
-        }
-        throw new ModelNotFoundException();
+        $query = sprintf(self::OPTIMIZED_FETCH_STUDENT_ATT_FOR_TEACHER_LECTURE_ID, $teacherLectureId,
+            $teacherLectureId,$teacherLectureId, $teacherLectureId, $fromDate, $toDate);
+        return DB::select($query);
     }
 
-
-    public function getStudentAvgAttendance($studentId){
-        /*$result = array();
-        foreach (StudentLectureQuery::getTeacherLectureIdsForStudent($studentId) as $teacherLectureId){
-
-            array_push($result, )
-        }*/
+    public function getStudentAttendanceByStudentIdAndStudentLectureId($studentId, $studentLectureId){
+        $fromDate = Carbon::now()->firstOfYear();
+        $toDate = Carbon::now();
+        $teacherLectureId = StudentLecture::findOrFail($studentLectureId)->teacher_lecture_id;
+        $query = self::OPTIMIZED_FETCH_STUDENT_ATT_FOR_TEACHER_LECTURE_ID. " where students.id = $studentId";
+        $query = sprintf($query, $teacherLectureId,  $teacherLectureId, $teacherLectureId, $teacherLectureId, $fromDate, $toDate);
+        return DB::select($query);
     }
 
 }

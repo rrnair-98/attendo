@@ -31,9 +31,18 @@ class TeacherLectureQuery
         $limit = $limit & 0xf;
         return TeacherLecture::join('lectures', 'lectures.id', '=', 'teacher_lectures.lecture_id')
             ->where('teacher_lectures.user_id', $teacherId)
-            ->skip($offset)
-            ->take($limit)
             ->select('lectures.*', 'teacher_lecture_id as actual_relation_id')
+            ->get();
+    }
+
+    /**
+     * Returns a list of lectures with the given teacher lecture ids
+     * @param array $ids
+     * @return mixed
+     */
+    public function findAllByIdWithLectures(array $ids){
+        return TeacherLecture::whereIn("teacher_lectures.id", $ids)->join('lectures', 'lectures.id', '=', 'teacher_lectures.lecture_id')
+            ->select("lectures.id", "lectures.lecture_name as name", "teacher_lectures.id as teacher_lecture_id")
             ->get();
     }
 

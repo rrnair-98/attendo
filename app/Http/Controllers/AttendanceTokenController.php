@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ResponseHelper;
+use App\Query\AttendanceTokenQuery;
 use App\Transactors\AttendanceTokenTransactor;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class AttendanceTokenController extends Controller
 {
     //
     private $attendanceTokenTransactor;
-    public function __construct(AttendanceTokenTransactor $attendanceTokenService)
+    private $attendanceTokenQuery;
+    public function __construct(AttendanceTokenTransactor $attendanceTokenService, AttendanceTokenQuery $attendanceTokenQuery)
     {
+        $this->attendanceTokenQuery = $attendanceTokenQuery;
         $this->attendanceTokenTransactor = $attendanceTokenService;
     }
 
@@ -37,9 +41,12 @@ class AttendanceTokenController extends Controller
         return ResponseHelper::badRequest("Expected tokens to be present");
     }
 
-
-    public function getStudentAvgAttendance(Request $request){
-
+    public function getUserDetailsFromToken($attendanceToken){
+        try {
+            return response($this->attendanceTokenQuery->getUserFromToken($attendanceToken));
+        } catch (ModelNotFoundException $mfe){
+            return ResponseHelper::notFound("Couldnt find attendance token");
+        }
     }
 
 }

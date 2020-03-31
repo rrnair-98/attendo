@@ -2,53 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ResponseHelper;
+use App\Query\AttendanceTokenQuery;
 use App\Services\AttendanceService;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Mockery\Exception\InvalidOrderException;
 
 class AttendanceController extends Controller
 {
     //
-    private $attendanceService;
-    public function __construct(AttendanceService $attendanceService)
+    private $attendanceQuery;
+    public function __construct(AttendanceTokenQuery $attendanceTokenQuery)
     {
-        $this->attendanceService = $attendanceService;
+        $this->attendanceQuery = $attendanceTokenQuery;
     }
 
     public function getIndex(){
         return response("hello world");
     }
 
-    public function getByLectureId(string $start, string $end, int $lectureId){
-        return response($this->attendanceService->attendanceByLectureId(Carbon::parse($start), Carbon::parse($end), $lectureId));
-    }
-
-    public function getByStudentId(string $start, string $end, int $studentId){
-        return response($this->attendanceService->attendanceByStudentId(Carbon::parse($start), Carbon::parse($end), $studentId));
-    }
-
-    public function getByStudentAndLectureId(string $start, string $end, int $studentId, int $lectureId){
-        return response($this->attendanceService->attendanceByStudentAndLecture(Carbon::parse($start), Carbon::parse($end), $studentId, $lectureId));
-    }
-
-    public function postBulkInsertAttendance(Request $request, int $teacherId, int $lectureId){
-        if(count($request->json()->all())){
-
-            $requestBody = $request->json()->all();
-            $studentTokens = $requestBody["tokens"];
-            error_log(count($studentTokens));
-            if($teacherId == $request->user->id && $teacherId && $lectureId && count($studentTokens)){
-                $this->attendanceService->bulkInsert($teacherId, $lectureId, $studentTokens);
-                return response("ok");
-            }
-            abort(400, 'Bad request');
+    public function getAttendanceForStudentByStudentLectureId($studentLectureId, Request $request){
+        try {
+            return response($this->attendanceQuery->getStudentAttendanceByStudentIdAndStudentLectureId($request->user->id, $studentLectureId));
+        } catch (ModelNotFoundException $e){
+            return ResponseHelper::notFound("studnetLecture");
         }
-        error_log(count($request->json()->all()));
-        abort(400, 'Bad request');
-
     }
 
-
-
+    public function getAttendanceForTeacherByTeacherLectureId($teacherLectureId){
+        try{
+            return $this->attendanceQuery->getStudentAttendanceByTeacherLectureId($teacherLectureId);
+        } catch (ModelNotFoundException $e){
+            return ResponseHelper::notFound("teacher lecture");
+        }
+    }
 
 }

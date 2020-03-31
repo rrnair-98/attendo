@@ -28,31 +28,21 @@ Route::middleware('token')->group(function (){
     });
 
     // todo wrap this in student middleware
-    Route::post('student/attendance/token', 'AttendanceTokenController@createAttendanceToken');
     Route::get('student/attendance/avg', 'AttendanceTokenController@');
-    // todo wrap in teacher, hod middleware
-  /*  Route::get('attendance/class-lecture/{classLectureId}', 'AttendanceToken@getAllStudentAttendanceForClassLectureId');
-    Route::get('attendance/teacher-lecture/{teacherLectureId}', 'AttendanceToken@getAllStudentAttendanceForTeacherLectureId');*/
-
 
     Route::middleware("student", function(){
         Route::get("student/lectures", "LectureController@getLecturesForStudent");
+        Route::post('student/attendance-token', 'AttendanceTokenController@createAttendanceToken');
+        Route::get("student/attendance/{studentLectureId}", "AttendanceController@getAttendanceForStudentByStudentLectureId");
+
     });
 
     Route::middleware('teacher', function(){
+        Route::get("teacher/student/att-token/{attendanceToken}", "AttendanceTokenController@getUserDetailsFromToken");
         Route::get("teacher/lectures", "LectureController@getLecturesForTeacher");
         Route::post('teacher/attendance/{teacherLectureId}', 'AttendanceTokenController@markStudentsPresent');
+        Route::post("teacher/report", "ExcelDownloadController@downloadAttendanceReport");
     });
 
 });
-
-/**
- * TODO - APPLY middleware to these methods.
- */
-
-Route::get('attendance/student/{start}/{end}/{studentId}/', 'AttendanceController@getByStudentId');
-Route::get('attendance/lecture/{start}/{end}/{lectureId}/', 'AttendanceController@getByLectureId');
-Route::get('attendance/student-and-lecture/{start}/{end}/{studentId}/{lectureId}/', 'AttendanceController@getByStudentAndLectureId');
-Route::post('attendance/{teacherId}/{lectureId}/', 'AttendanceController@postBulkInsertAttendance')->middleware('token', 'teacher');
-Route::resource('attendance', 'AttendanceController');
-
+/*Route::get("test", "ExcelDownloadController@test");*/

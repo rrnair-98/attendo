@@ -22,4 +22,5 @@ class StudentLectureQuery
             ->select("lectures.*", "student_lectures.id as actual_relation_id")
             ->get();
     }
+
 }
