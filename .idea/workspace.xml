@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="fix">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ExcelDownloadController.php" afterDir="false" />
+    <list default="true" id="1b77046f-6e5d-45ce-ab45-6da56c07dbf1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/AttendanceExporter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendanceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendanceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendanceTokenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendanceTokenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/AttendanceTokenQuery.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Query/StudentLectureQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/StudentLectureQuery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Query/TeacherLectureQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Query/TeacherLectureQuery.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transactors/AttendanceTokenTransactor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transactors/AttendanceTokenTransactor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -194,17 +189,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:attendo" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@45a3beca" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -258,7 +243,10 @@
       <workItem from="1583777144642" duration="2344000" />
       <workItem from="1585396471952" duration="2952000" />
       <workItem from="1585479320984" duration="10309000" />
-      <workItem from="1585567955417" duration="24131000" />
+      <workItem from="1585567955417" duration="24770000" />
+      <workItem from="1585865857574" duration="2312000" />
+      <workItem from="1585918308219" duration="599000" />
+      <workItem from="1586194630934" duration="1633000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1585396635710</created>
@@ -330,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585600149237</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="adding attendance report">
+      <created>1585680886677</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1585680886677</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,7 +341,8 @@
     <MESSAGE value="removing message and date from auth controller" />
     <MESSAGE value="adding read lectures for student and teacher" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="adding attendance report" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding attendance report" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="675" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579607111829">
@@ -357,31 +353,28 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="721" y="312" width="611" height="387" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1579629619926" />
-    <state x="2641" y="324" width="467" height="387" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577433350764" />
     <state x="656" y="0" width="894" height="1038" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582793030142">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="0" width="1254" height="1038" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582793030142" />
     <state x="656" y="0" width="894" height="1038" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582529152009" />
-    <state x="2632" y="123" width="476" height="789" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482085813" />
     <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585661691645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="267" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585661691645" />
     <state x="693" y="267" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582798090013" />
     <state x="693" y="267" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582525386969" />
-    <state x="2613" y="277" width="524" height="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577482668681" />
-    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2" timestamp="1585680865670">
+    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2" timestamp="1585680886503">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585680865670" />
+    <state x="571" y="130" width="769" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585680886503" />
     <state x="2491" y="135" width="768" height="806" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397324149" />
-    <state x="743" y="267" width="424" height="482" key="FileChooserDialogImpl" timestamp="1582797939834">
+    <state x="743" y="267" width="424" height="482" key="FileChooserDialogImpl" timestamp="1585684318665">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="743" y="267" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585684318665" />
     <state x="743" y="267" width="424" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582797939834" />
     <state x="743" y="1357" key="FileChooserDialogImpl/0.1080.1920.1080/0.0.1920.1080@0.1080.1920.1080" timestamp="1582472505543" />
-    <state x="2663" y="277" width="424" height="482" key="FileChooserDialogImpl/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577389106729" />
     <state width="1323" height="246" key="GridCell.Tab.0.bottom" timestamp="1585661356646">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -413,7 +406,6 @@
     <state x="2596" y="335" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585397654361" />
     <state x="676" y="323" width="641" height="366" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582793024072" />
     <state x="676" y="323" width="529" height="366" key="NewPhpClassDialog/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582526740883" />
-    <state x="2596" y="335" width="641" height="366" key="NewPhpClassDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577488323822" />
     <state x="771" y="232" width="367" height="571" key="RollbackChangesDialog" timestamp="1585661342545">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -422,17 +414,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="464" y="148" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1579639188016" />
-    <state x="2384" y="154" key="SettingsEditor/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577449860188" />
-    <state x="555" y="255" width="800" height="526" key="Vcs.Push.Dialog.v2" timestamp="1585600152412">
+    <state x="555" y="255" width="800" height="526" key="Vcs.Push.Dialog.v2" timestamp="1585680896913">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="555" y="255" width="800" height="526" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585600152412" />
+    <state x="555" y="255" width="800" height="526" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585680896913" />
     <state x="555" y="255" width="800" height="526" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1579612135711" />
     <state x="653" y="353" key="com.intellij.ide.util.TipDialog" timestamp="1583818123391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="653" y="353" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583818123391" />
-    <state x="2573" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577449756836" />
     <state x="641" y="123" width="628" height="795" key="find.popup" timestamp="1582989370847">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -445,14 +435,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582691915962" />
-    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup" timestamp="1585680474672">
+    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup" timestamp="1586196013671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1585680474672" />
     <state x="2543" y="228" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585398023473" />
     <state x="623" y="220" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583679590882" />
-    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1582542448897" />
+    <state x="623" y="220" width="672" height="654" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1040@0.0.1920.1040" timestamp="1586196013671" />
     <state x="623" y="1308" width="672" height="679" key="search.everywhere.popup/0.1080.1920.1080/0.0.1920.1080@0.1080.1920.1080" timestamp="1582483290972" />
-    <state x="2543" y="228" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.124.1920.1080@1920.0.1920.1080" timestamp="1577488350812" />
   </component>
 </project>

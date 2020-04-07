@@ -30,14 +30,14 @@ Route::middleware('token')->group(function (){
     // todo wrap this in student middleware
     Route::get('student/attendance/avg', 'AttendanceTokenController@');
 
-    Route::middleware("student", function(){
+    Route::middleware("student")->group(function(){
         Route::get("student/lectures", "LectureController@getLecturesForStudent");
         Route::post('student/attendance-token', 'AttendanceTokenController@createAttendanceToken');
         Route::get("student/attendance/{studentLectureId}", "AttendanceController@getAttendanceForStudentByStudentLectureId");
 
     });
 
-    Route::middleware('teacher', function(){
+    Route::middleware('teacher')->group( function(){
         Route::get("teacher/student/att-token/{attendanceToken}", "AttendanceTokenController@getUserDetailsFromToken");
         Route::get("teacher/lectures", "LectureController@getLecturesForTeacher");
         Route::post('teacher/attendance/{teacherLectureId}', 'AttendanceTokenController@markStudentsPresent');

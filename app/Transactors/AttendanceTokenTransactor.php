@@ -58,7 +58,7 @@ class AttendanceTokenTransactor extends BaseTransactor
                 $existingAttendanceToken = $this->attendanceMutator->create(
                     [
                         'created_by' => $user->id,
-                        'expires_at' => Carbon::now()->addMinutes(AttendanceToken::MAX_EXPIRY_IN_MINUTES),
+                        'expires_at' => Carbon::now()->addMinutes(AttendanceToken::MAX_EXPIRY_IN_MINUTES)->format('Y-m-d H:i:s'),
                         'token' => $this->attendanceMutator->generateToken($user)
                     ]
                 );
